@@ -1,4 +1,4 @@
-package trooperdesigns.lastminuteapp;
+package trooperdesigns.lastminuteapp.UtilPackage;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,7 +10,9 @@ import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 
-import static trooperdesigns.lastminuteapp.Utils.getString;
+import trooperdesigns.lastminuteapp.R;
+
+import static trooperdesigns.lastminuteapp.UtilPackage.Utils.getString;
 
 /**
  * Created by james on 15-08-09.

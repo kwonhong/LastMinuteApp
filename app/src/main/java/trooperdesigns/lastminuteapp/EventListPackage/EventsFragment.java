@@ -1,4 +1,4 @@
-package trooperdesigns.lastminuteapp;
+package trooperdesigns.lastminuteapp.EventListPackage;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -16,6 +16,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 import trooperdesigns.lastminuteapp.DrawerPackage.DrawerActivity;
+import trooperdesigns.lastminuteapp.EventListPackage.EventListAdapter;
+import trooperdesigns.lastminuteapp.R;
 
 public class EventsFragment extends ListFragment {
 	/**

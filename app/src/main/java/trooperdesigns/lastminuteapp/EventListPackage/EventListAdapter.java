@@ -1,4 +1,4 @@
-package trooperdesigns.lastminuteapp;
+package trooperdesigns.lastminuteapp.EventListPackage;
 
 import android.content.Context;
 import android.util.Log;
@@ -18,6 +18,8 @@ import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import trooperdesigns.lastminuteapp.R;
 
 public class EventListAdapter extends ParseQueryAdapter implements Filterable {
 

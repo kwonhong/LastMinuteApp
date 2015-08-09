@@ -1,4 +1,4 @@
-package trooperdesigns.lastminuteapp;
+package trooperdesigns.lastminuteapp.UtilPackage;
 
 import android.content.Context;
 
