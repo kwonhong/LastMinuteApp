@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 
+import trooperdesigns.lastminuteapp.DrawerPackage.DrawerActivity;
+
 public class EventsFragment extends ListFragment {
 	/**
 	 * The fragment argument representing the section number for this fragment.
