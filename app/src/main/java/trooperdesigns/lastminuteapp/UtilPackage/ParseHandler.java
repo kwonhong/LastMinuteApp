@@ -40,7 +40,7 @@ public class ParseHandler {
 
     }
 
-    private void parseLogin() {
+    public void parseLogin() {
 
 //        ParseACL defaultACL = new ParseACL();
         ParseUser.logInInBackground(getString(context, PARSE_USERNAME_KEY),

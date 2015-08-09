@@ -17,17 +17,20 @@ import com.melnykov.fab.FloatingActionButton;
 import trooperdesigns.lastminuteapp.EventListPackage.EventsFragment;
 import trooperdesigns.lastminuteapp.NewEventActivity;
 import trooperdesigns.lastminuteapp.R;
+import trooperdesigns.lastminuteapp.UtilPackage.ParseHandler;
 
 public class DrawerActivity extends AppCompatActivity {
 
     private static int EVENT_LIST_FRAGMENT_INDEX = 0;
 
-    private DrawerLayout mDrawerLayout;
-    private Toolbar mToolbar;
-    private RelativeLayout mNavigationDrawerRelativeLayout;
+    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
+    private RelativeLayout navigationDrawerRelativeLayout;
     private FloatingActionButton floatingActionButton;
-    private ListView mDrawerListview;
-    private FragmentManager mFragmentManager;
+    private ListView drawerListView;
+    private FragmentManager fragmentManager;
+    private ParseHandler parseHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,13 @@ public class DrawerActivity extends AppCompatActivity {
         setUpToolBar();
         setupFloatingButton();
         setUpNavigationDrawerListView();
+        setUpParseHandler();
+    }
+
+    private void setUpParseHandler() {
+
+        parseHandler = new ParseHandler(getApplicationContext());
+        parseHandler.parseLogin();
     }
 
     private void setupFloatingButton() {
@@ -61,19 +71,19 @@ public class DrawerActivity extends AppCompatActivity {
         };
 
         // Setup current Fragment as EventListFragment
-        mFragmentManager.beginTransaction()
+        fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, navigationDrawerItems[EVENT_LIST_FRAGMENT_INDEX].getFragment())
                 .commit();
 
         // Setup Drawer Fragment list click listener
         DrawerAdapter adapter = new DrawerAdapter(getApplicationContext(), navigationDrawerItems);
-        mDrawerListview.setAdapter(adapter);
-        mDrawerListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        drawerListView.setAdapter(adapter);
+        drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Fragment fragment = navigationDrawerItems[position].getFragment();
-                mFragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-                mDrawerLayout.closeDrawer(mNavigationDrawerRelativeLayout);
+                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+                drawerLayout.closeDrawer(navigationDrawerRelativeLayout);
             }
         });
     }
@@ -81,25 +91,25 @@ public class DrawerActivity extends AppCompatActivity {
     private void setUpToolBar() {
 
         // Setting title.
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
 
         // Setting the Click Listener & Icon
-        mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDrawerLayout.openDrawer(mNavigationDrawerRelativeLayout);
+                drawerLayout.openDrawer(navigationDrawerRelativeLayout);
             }
         });
     }
 
     private void initializeVariables() {
-        mFragmentManager = getSupportFragmentManager();
-        mDrawerListview = (ListView) findViewById(R.id.drawerListview);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.layout_dashboard);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mNavigationDrawerRelativeLayout = (RelativeLayout) findViewById(R.id.navigation_drawer_container);
+        fragmentManager = getSupportFragmentManager();
+        drawerListView = (ListView) findViewById(R.id.drawerListview);
+        drawerLayout = (DrawerLayout) findViewById(R.id.layout_dashboard);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        navigationDrawerRelativeLayout = (RelativeLayout) findViewById(R.id.navigation_drawer_container);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingBtn);
 
     }
