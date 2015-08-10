@@ -9,6 +9,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/AnimatedExpandableListView" />
+            <option value="$PROJECT_DIR$/CircularProgressButton" />
+            <option value="$PROJECT_DIR$/MaterialRippleLayout" />
+            <option value="$PROJECT_DIR$/StickyListHeaders" />
             <option value="$PROJECT_DIR$/android-support-v7-appcompat" />
             <option value="$PROJECT_DIR$/app" />
           </set>
