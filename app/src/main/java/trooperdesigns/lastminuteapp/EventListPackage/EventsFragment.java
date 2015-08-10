@@ -1,37 +1,32 @@
 package trooperdesigns.lastminuteapp.EventListPackage;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.parse.ParseFile;
-import com.parse.ParseObject;
+import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 
-import trooperdesigns.lastminuteapp.DrawerPackage.DrawerActivity;
-import trooperdesigns.lastminuteapp.EventListPackage.EventListAdapter;
+import trooperdesigns.lastminuteapp.Adapter.GoogleCardsTravelAdapter;
+import trooperdesigns.lastminuteapp.DummyContent.DummyContent;
+import trooperdesigns.lastminuteapp.DummyContent.DummyModel;
 import trooperdesigns.lastminuteapp.R;
 
-public class EventsFragment extends ListFragment {
-	/**
-	 * The fragment argument representing the section number for this fragment.
-	 */
-	public static final String ARG_SECTION_NUMBER = "section_number";
-	public static int numEvents;
+public class EventsFragment extends ListFragment implements OnDismissCallback {
 
-	private EventListAdapter eventsAdapter;
+	private static final int INITIAL_DELAY_MILLIS = 300;
+	private GoogleCardsTravelAdapter mGoogleCardsAdapter;
 	private ListView listView;
-	private SwipeRefreshLayout swipeLayout;
-
-	public EventsFragment() {
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,43 +35,49 @@ public class EventsFragment extends ListFragment {
 		View rootView = inflater.inflate(R.layout.fragment_events, container,
 				false);
 
-		listView = (ListView) rootView.findViewById(android.R.id.list);
-
-		swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-		swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-			@Override
-			public void onRefresh() {
-				//load();
-				eventsAdapter.loadObjects();
-				swipeLayout.setRefreshing(false);
-			}
-		});
-
-		// setting custom adapter for listFragment
-		eventsAdapter = new EventListAdapter(getActivity());
-		listView.setAdapter(eventsAdapter);
-		
-		// initial load of events list contents
-		eventsAdapter.loadObjects();
-		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		listView = (ListView) rootView.findViewById(R.id.list_view);
 
 		return rootView;
 	}
-	
-//	private void load(){
-//		// TODO Auto-generated method stub
-//		//Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
-//		animation.setDuration(800);
-//		listView.startAnimation(animation);
-//		setNumEvents();
-//		animation = null;
-//	}
+
+	@Override
+	public void onDismiss(@NonNull final ViewGroup listView,
+						  @NonNull final int[] reverseSortedPositions) {
+		for (int position : reverseSortedPositions) {
+			mGoogleCardsAdapter.remove(mGoogleCardsAdapter.getItem(position));
+		}
+	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
 		super.onActivityCreated(savedInstanceState);
-		listView = getListView(); // since you extend ListFragment
+
+		// set up listview in onActivityCreated, otherwise won't have activity context which is
+		// necessary for swingBottomInAnimationAdapter
+		ListView listView = getListView();
+
+		mGoogleCardsAdapter = new GoogleCardsTravelAdapter(getActivity(),
+				DummyContent.getDummyModelList());
+		SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(
+				new SwipeDismissAdapter(mGoogleCardsAdapter, this));
+		swingBottomInAnimationAdapter.setAbsListView(listView);
+
+		assert swingBottomInAnimationAdapter.getViewAnimator() != null;
+		swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(
+				INITIAL_DELAY_MILLIS);
+
+		listView.setClipToPadding(false);
+		listView.setDivider(null);
+		Resources r = getResources();
+		int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, r.getDisplayMetrics());
+		listView.setDividerHeight(px);
+		listView.setFadingEdgeLength(0);
+		listView.setFitsSystemWindows(true);
+		px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12, r.getDisplayMetrics());
+		listView.setPadding(px, px, px, px);
+		listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+		listView.setAdapter(swingBottomInAnimationAdapter);
 		
 		listView.setOnItemLongClickListener(new OnItemLongClickListener(){
 
@@ -84,8 +85,8 @@ public class EventsFragment extends ListFragment {
 			public boolean onItemLongClick(AdapterView<?> list, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				ParseObject object = (ParseObject) list.getItemAtPosition(position);
-				Toast.makeText(getActivity(), "Long click on: " + position + ": " + object.getString("title"),
+				DummyModel object = (DummyModel) list.getItemAtPosition(position);
+				Toast.makeText(getActivity(), "Long click on: " + position + ": " + object.getText(),
 						Toast.LENGTH_SHORT).show();
 				return true;
 			}
@@ -95,33 +96,5 @@ public class EventsFragment extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		// retrieve theListView item
-		ParseObject object = (ParseObject) l.getItemAtPosition(position);
-		DrawerActivity containerActivity = (DrawerActivity) getActivity();
-		
-		final android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-		//Intent i = new Intent(getActivity(), EventDetailsActivity.class);
-
-
-		// put all event information necessary for full event page in bundle
-		Bundle bundle = new Bundle();
-		bundle.putString("objectId", object.getObjectId()); // objectId of event
-		bundle.putString("title", object.getString("title")); // title of event
-		bundle.putString("createdAt", object.getCreatedAt().toString()); // createdAt
-
-		ParseFile pf = object.getParseFile("image");
-		if(pf != null){
-			bundle.putString("image", object.getParseFile("image").getUrl()); // put parse image file in bundle
-		}
-
-		//i.putExtras(bundle);
-
-		//startActivity(i);
-
-
-		// do something
-		//Toast.makeText(getActivity(), object.getString("title"), Toast.LENGTH_SHORT).show();
 	}
-	
 }

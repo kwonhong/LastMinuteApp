@@ -13,10 +13,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.melnykov.fab.FloatingActionButton;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import trooperdesigns.lastminuteapp.NewEventActivity;
+import trooperdesigns.lastminuteapp.EventListPackage.EventsFragment;
+import trooperdesigns.lastminuteapp.GoogleCardsActivity;
 import trooperdesigns.lastminuteapp.R;
-import trooperdesigns.lastminuteapp.Fragments.TextViewsFragment;
 import trooperdesigns.lastminuteapp.UtilPackage.ParseHandler;
 
 public class DrawerActivity extends AppCompatActivity {
@@ -42,6 +44,7 @@ public class DrawerActivity extends AppCompatActivity {
         setupFloatingButton();
         setUpNavigationDrawerListView();
         setUpParseHandler();
+        initializeImageLoader();
     }
 
     private void setUpParseHandler() {
@@ -54,7 +57,7 @@ public class DrawerActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NewEventActivity.class);
+                Intent intent = new Intent(getApplicationContext(), GoogleCardsActivity.class);
                 startActivity(intent);
 
             }
@@ -67,7 +70,7 @@ public class DrawerActivity extends AppCompatActivity {
         // Order matters!
         final NavigationDrawerItem[] navigationDrawerItems = {
                 new NavigationDrawerItem(getResources().getDrawable(R.mipmap.ic_launcher),
-                        "Events", TextViewsFragment.newInstance())
+                        "Events", new EventsFragment())
         };
 
         // Setup current Fragment as EventListFragment
@@ -111,6 +114,12 @@ public class DrawerActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         navigationDrawerRelativeLayout = (RelativeLayout) findViewById(R.id.navigation_drawer_container);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingBtn);
+    }
 
+    private void initializeImageLoader() {
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        if (!imageLoader.isInited()) {
+            imageLoader.init(ImageLoaderConfiguration.createDefault(this));
+        }
     }
 }
