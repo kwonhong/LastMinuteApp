@@ -1,12 +1,82 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="trooperdesigns.lastminuteapp.NewEventActivity">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_expense_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="83dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="12dp"
+    android:clickable="true"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp" >
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
+
+            <trooperdesigns.lastminuteapp.font.FontelloTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/fontello_user"
+                android:textColor="@color/main_color_grey_600"
+                android:textSize="16dp"
+                tools:ignore="SpUsage" />
+
+            <trooperdesigns.lastminuteapp.Views.FloatLabeledEditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                app:fletFloatingHint="@string/username"
+                app:fletHintTextColor="@color/main_color_500"
+                app:fletSingleLine="true"
+                app:fletTextBackground="@drawable/edit_text_background_accent"
+                app:fletTextColor="@color/main_color_grey_400" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical" >
+
+            <trooperdesigns.lastminuteapp.font.FontelloTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/fontello_password"
+                android:textColor="@color/main_color_grey_600"
+                android:textSize="16dp"
+                tools:ignore="SpUsage" />
+
+            <trooperdesigns.lastminuteapp.Views.FloatLabeledEditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                app:fletFloatingHint="@string/password"
+                app:fletHintTextColor="@color/main_color_500"
+                app:fletPassword="true"
+                app:fletSingleLine="true"
+                app:fletTextBackground="@drawable/edit_text_background_accent"
+                app:fletTextColor="@color/main_color_grey_400" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

@@ -18,7 +18,6 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCa
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 
 import trooperdesigns.lastminuteapp.Adapter.GoogleCardsTravelAdapter;
-import trooperdesigns.lastminuteapp.DummyContent.DummyContent;
 import trooperdesigns.lastminuteapp.DummyContent.DummyModel;
 import trooperdesigns.lastminuteapp.R;
 
@@ -57,8 +56,9 @@ public class EventsFragment extends ListFragment implements OnDismissCallback {
 		// necessary for swingBottomInAnimationAdapter
 		ListView listView = getListView();
 
-		mGoogleCardsAdapter = new GoogleCardsTravelAdapter(getActivity(),
-				DummyContent.getDummyModelList());
+//		mGoogleCardsAdapter = new GoogleCardsTravelAdapter(getActivity(),
+//				DummyContent.getDummyModelList());
+		EventListAdapter mGoogleCardsAdapter = new EventListAdapter(getActivity());
 		SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(
 				new SwipeDismissAdapter(mGoogleCardsAdapter, this));
 		swingBottomInAnimationAdapter.setAbsListView(listView);
