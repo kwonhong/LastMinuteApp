@@ -14,9 +14,9 @@ import android.widget.RelativeLayout;
 
 import com.melnykov.fab.FloatingActionButton;
 
-import trooperdesigns.lastminuteapp.EventListPackage.EventsFragment;
 import trooperdesigns.lastminuteapp.NewEventActivity;
 import trooperdesigns.lastminuteapp.R;
+import trooperdesigns.lastminuteapp.Fragments.TextViewsFragment;
 import trooperdesigns.lastminuteapp.UtilPackage.ParseHandler;
 
 public class DrawerActivity extends AppCompatActivity {
@@ -67,7 +67,7 @@ public class DrawerActivity extends AppCompatActivity {
         // Order matters!
         final NavigationDrawerItem[] navigationDrawerItems = {
                 new NavigationDrawerItem(getResources().getDrawable(R.mipmap.ic_launcher),
-                        "Events", new EventsFragment())
+                        "Events", TextViewsFragment.newInstance())
         };
 
         // Setup current Fragment as EventListFragment
