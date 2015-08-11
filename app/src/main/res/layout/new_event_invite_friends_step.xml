@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="24dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical" >
+
+        <trooperdesigns.lastminuteapp.font.FontelloTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/fontello_microfon"
+            android:textColor="@color/main_color_grey_600"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
+
+        <trooperdesigns.lastminuteapp.Views.FloatLabeledEditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            app:fletFloatingHint="@string/event_select_friends"
+            app:fletHintTextColor="@color/main_color_500"
+            app:fletSingleLine="true"
+            app:fletTextBackground="@drawable/edit_text_background_accent"
+            app:fletTextColor="@color/main_color_grey_400" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center_vertical" >
+
+        <trooperdesigns.lastminuteapp.font.FontelloTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/fontello_drag_and_drop"
+            android:textColor="@color/main_color_grey_600"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
+
+        <trooperdesigns.lastminuteapp.Views.FloatLabeledEditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            app:fletFloatingHint="@string/event_time"
+            app:fletHintTextColor="@color/main_color_500"
+            app:fletPassword="true"
+            app:fletSingleLine="true"
+            app:fletTextBackground="@drawable/edit_text_background_accent"
+            app:fletTextColor="@color/main_color_grey_400" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="right" >
+        <trooperdesigns.lastminuteapp.font.RobotoTextView
+            android:id="@+id/back_button_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/transparent_button_selector"
+            android:padding="8dp"
+            android:text="BACK"
+            android:textColor="@color/main_color_500"
+            android:textSize="14sp"
+            app:typeface="robotoMedium" />
+        <trooperdesigns.lastminuteapp.font.RobotoTextView
+            android:id="@+id/next_button_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/transparent_button_selector"
+            android:padding="8dp"
+            android:text="NEXT"
+            android:textColor="@color/main_color_500"
+            android:textSize="14sp"
+            app:typeface="robotoMedium" />
+
+    </LinearLayout>
+
+</LinearLayout>

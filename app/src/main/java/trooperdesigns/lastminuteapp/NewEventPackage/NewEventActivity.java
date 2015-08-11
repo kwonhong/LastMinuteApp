@@ -14,36 +14,116 @@ import trooperdesigns.lastminuteapp.R;
 
 public class NewEventActivity extends AppCompatActivity {
 
-    LinearLayout linearLayout;
-    CardView cardView1, cardView2, cardView3;
+    private CardView cardView1, cardView2, cardView3;
+    private ObjectAnimator cardViewMover1, cardViewMover2, cardViewMover3;
+    private int currentCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
 
-        linearLayout = (LinearLayout) findViewById(R.id.layout);
         cardView1 = (CardView) findViewById(R.id.cardview1);
         cardView2 = (CardView) findViewById(R.id.cardview2);
         cardView3 = (CardView) findViewById(R.id.cardview3);
 
-        TextView additionalButton = (TextView) findViewById(R.id.additionalButton);
-        additionalButton.setOnClickListener(new View.OnClickListener() {
+        currentCard = 1;
+
+        TextView nextButton = (TextView) findViewById(R.id.next_button);
+        TextView nextButton2 = (TextView) findViewById(R.id.next_button_2);
+        TextView nextButton3 = (TextView) findViewById(R.id.next_button_3);
+        TextView backButton = (TextView) findViewById(R.id.back_button);
+        TextView backButton2 = (TextView) findViewById(R.id.back_button_2);
+        TextView backButton3 = (TextView) findViewById(R.id.back_button_3);
+
+        View.OnClickListener nextClickHandler = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                onNextPressed();
+            }
+        };
+        View.OnClickListener backClickHandler = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        };
 
-                ObjectAnimator cardViewMover1 = ObjectAnimator.ofFloat(cardView1, "translationX", 0, -cardView1.getWidth());
-                cardViewMover1.setDuration(100);
+        nextButton.setOnClickListener(nextClickHandler);
+        backButton.setOnClickListener(backClickHandler);
+
+        nextButton2.setOnClickListener(nextClickHandler);
+        backButton2.setOnClickListener(backClickHandler);
+
+        nextButton3.setOnClickListener(nextClickHandler);
+        backButton3.setOnClickListener(backClickHandler);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        switch(currentCard){
+            case(1):
+                super.onBackPressed();
+                break;
+            case(2):
+                cardViewMover1 = ObjectAnimator.ofFloat(cardView1, "translationX", -cardView1.getWidth(), 0);
+                cardViewMover1.setDuration(150);
+                cardViewMover1.start();
+                cardView1.setVisibility(View.VISIBLE);
+
+                cardViewMover2 = ObjectAnimator.ofFloat(cardView2, "translationX", 0, cardView1.getWidth());
+                cardViewMover2.setDuration(150);
+                cardViewMover2.start();
+
+                currentCard--;
+                break;
+            case(3):
+                cardViewMover2 = ObjectAnimator.ofFloat(cardView2, "translationX", -cardView1.getWidth(), 0);
+                cardViewMover2.setDuration(150);
+                cardViewMover2.start();
+                cardView2.setVisibility(View.VISIBLE);
+
+                cardViewMover3 = ObjectAnimator.ofFloat(cardView3, "translationX", 0, cardView1.getWidth());
+                cardViewMover3.setDuration(150);
+                cardViewMover3.start();
+
+                currentCard--;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void onNextPressed() {
+        switch(currentCard) {
+            case(1):
+                cardViewMover1 = ObjectAnimator.ofFloat(cardView1, "translationX", 0, -cardView1.getWidth());
+                cardViewMover1.setDuration(150);
                 cardViewMover1.start();
 
                 ObjectAnimator cardViewMover2 = ObjectAnimator.ofFloat(cardView2, "translationX", cardView1.getWidth(), 0);
-                cardViewMover2.setDuration(100);
+                cardViewMover2.setDuration(150);
                 cardViewMover2.start();
                 cardView2.setVisibility(View.VISIBLE);
-            }
-        });
+                currentCard++;
+                break;
+            case(2):
+                cardViewMover2 = ObjectAnimator.ofFloat(cardView2, "translationX", 0, -cardView1.getWidth());
+                cardViewMover2.setDuration(150);
+                cardViewMover2.start();
 
-
+                cardViewMover3 = ObjectAnimator.ofFloat(cardView3, "translationX", cardView1.getWidth(), 0);
+                cardViewMover3.setDuration(150);
+                cardViewMover3.start();
+                cardView3.setVisibility(View.VISIBLE);
+                currentCard++;
+                break;
+            case(3):
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

@@ -169,6 +169,12 @@
     <string name="raised">RAISED</string>
     <string name="flat">FLAT</string>
 
+    <string name="event_title">Event Title</string>
+    <string name="event_details">Details</string>
+    <string name="event_location">Location</string>
+    <string name="event_time">Time</string>
+    <string name="event_select_friends">Select friends to invite</string>
+
     <!-- For Update -->
     <string name="confirm_exit">Press Back button again to exit</string>
 

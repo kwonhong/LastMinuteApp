@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/jars/classes.jar"
+        jar="/Users/JustinChang/Documents/projects/LastMinApp/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-92d89e2a86595c7a71192b0f1a1079b64094f0d9.jar" />
+        <dex dex="/Users/JustinChang/Documents/projects/LastMinApp/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-f51ad8b1c333cf3cbcc865e33a94f349e9d1da1f.jar" />
     </item>
 
 </items>

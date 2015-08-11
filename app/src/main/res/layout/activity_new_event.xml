@@ -5,7 +5,6 @@
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cardview1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,86 +18,12 @@
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true">
 
-        <LinearLayout
-            android:id="@+id/layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="24dp" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical" >
-
-                <trooperdesigns.lastminuteapp.font.FontelloTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/fontello_user"
-                    android:textColor="@color/main_color_grey_600"
-                    android:textSize="16dp"
-                    tools:ignore="SpUsage" />
-
-                <trooperdesigns.lastminuteapp.Views.FloatLabeledEditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_weight="1"
-                    app:fletFloatingHint="@string/username"
-                    app:fletHintTextColor="@color/main_color_500"
-                    app:fletSingleLine="true"
-                    app:fletTextBackground="@drawable/edit_text_background_accent"
-                    app:fletTextColor="@color/main_color_grey_400" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:gravity="center_vertical" >
-
-                <trooperdesigns.lastminuteapp.font.FontelloTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/fontello_password"
-                    android:textColor="@color/main_color_grey_600"
-                    android:textSize="16dp"
-                    tools:ignore="SpUsage" />
-
-                <trooperdesigns.lastminuteapp.Views.FloatLabeledEditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_weight="1"
-                    app:fletFloatingHint="@string/password"
-                    app:fletHintTextColor="@color/main_color_500"
-                    app:fletPassword="true"
-                    app:fletSingleLine="true"
-                    app:fletTextBackground="@drawable/edit_text_background_accent"
-                    app:fletTextColor="@color/main_color_grey_400" />
-            </LinearLayout>
-
-            <trooperdesigns.lastminuteapp.font.RobotoTextView
-                android:id="@+id/additionalButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/transparent_button_selector"
-                android:padding="8dp"
-                android:text="SHARE"
-                android:textColor="@color/main_color_500"
-                android:textSize="14sp"
-                app:typeface="robotoMedium" />
-        </LinearLayout>
+        <include layout="@layout/new_event_details_step" android:id="@+id/new_event_details_step" />
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cardview2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -111,15 +36,14 @@
         android:visibility="gone"
         android:clickable="true"
         app:cardElevation="4dp"
-
         app:cardUseCompatPadding="true">
 
+        <include layout="@layout/new_event_location_time_step" android:id="@+id/new_event_location_time_step" />
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cardview3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -134,9 +58,9 @@
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true">
 
+        <include layout="@layout/new_event_invite_friends_step" android:id="@+id/new_event_details_step" />
+
     </android.support.v7.widget.CardView>
-
-
 
 </FrameLayout>
 
