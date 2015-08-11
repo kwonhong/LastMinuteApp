@@ -144,28 +144,6 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	String getMonthName(int num) {
 		String month = "wrong";
 		DateFormatSymbols dfs = new DateFormatSymbols();

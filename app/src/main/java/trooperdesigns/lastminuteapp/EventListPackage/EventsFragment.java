@@ -17,14 +17,13 @@ import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationA
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 
-import trooperdesigns.lastminuteapp.Adapter.GoogleCardsTravelAdapter;
 import trooperdesigns.lastminuteapp.DummyContent.DummyModel;
 import trooperdesigns.lastminuteapp.R;
 
 public class EventsFragment extends ListFragment implements OnDismissCallback {
 
 	private static final int INITIAL_DELAY_MILLIS = 300;
-	private GoogleCardsTravelAdapter mGoogleCardsAdapter;
+	private EventListAdapter eventListAdapter;
 	private ListView listView;
 
 	@Override
@@ -43,7 +42,9 @@ public class EventsFragment extends ListFragment implements OnDismissCallback {
 	public void onDismiss(@NonNull final ViewGroup listView,
 						  @NonNull final int[] reverseSortedPositions) {
 		for (int position : reverseSortedPositions) {
-			mGoogleCardsAdapter.remove(mGoogleCardsAdapter.getItem(position));
+			// TODO: Bug: no 'remove' function in ParseQueryAdapter, need to implement
+			// currently can't swipe away a card
+			//eventListAdapter.remove(eventListAdapter.getItem(position));
 		}
 	}
 
@@ -56,11 +57,9 @@ public class EventsFragment extends ListFragment implements OnDismissCallback {
 		// necessary for swingBottomInAnimationAdapter
 		ListView listView = getListView();
 
-//		mGoogleCardsAdapter = new GoogleCardsTravelAdapter(getActivity(),
-//				DummyContent.getDummyModelList());
-		EventListAdapter mGoogleCardsAdapter = new EventListAdapter(getActivity());
+		eventListAdapter = new EventListAdapter(getActivity());
 		SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(
-				new SwipeDismissAdapter(mGoogleCardsAdapter, this));
+				new SwipeDismissAdapter(eventListAdapter, this));
 		swingBottomInAnimationAdapter.setAbsListView(listView);
 
 		assert swingBottomInAnimationAdapter.getViewAnimator() != null;
@@ -78,7 +77,7 @@ public class EventsFragment extends ListFragment implements OnDismissCallback {
 		listView.setPadding(px, px, px, px);
 		listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
 		listView.setAdapter(swingBottomInAnimationAdapter);
-		
+
 		listView.setOnItemLongClickListener(new OnItemLongClickListener(){
 
 			@Override
@@ -90,7 +89,7 @@ public class EventsFragment extends ListFragment implements OnDismissCallback {
 						Toast.LENGTH_SHORT).show();
 				return true;
 			}
-			
+
 		});
 	}
 
