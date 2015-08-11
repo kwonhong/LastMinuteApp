@@ -9,11 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import trooperdesigns.lastminuteapp.DummyContent.DummyModel;
 import trooperdesigns.lastminuteapp.R;
 import trooperdesigns.lastminuteapp.UtilPackage.ImageUtil;
-
-import java.util.List;
 
 public class GoogleCardsTravelAdapter extends ArrayAdapter<DummyModel>
 		implements OnClickListener {
@@ -46,10 +46,10 @@ public class GoogleCardsTravelAdapter extends ArrayAdapter<DummyModel>
 					.findViewById(R.id.list_item_google_cards_travel_title);
 			holder.text = (TextView) convertView
 					.findViewById(R.id.list_item_google_cards_travel_text);
-			holder.explore = (TextView) convertView
-					.findViewById(R.id.list_item_google_cards_travel_explore);
-			holder.share = (TextView) convertView
-					.findViewById(R.id.list_item_google_cards_travel_share);
+//			holder.explore = (TextView) convertView
+//					.findViewById(R.id.list_item_google_cards_travel_explore);
+//			holder.share = (TextView) convertView
+//					.findViewById(R.id.list_item_google_cards_travel_share);
 			holder.explore.setOnClickListener(this);
 			holder.share.setOnClickListener(this);
 			convertView.setTag(holder);
@@ -79,13 +79,13 @@ public class GoogleCardsTravelAdapter extends ArrayAdapter<DummyModel>
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		int possition = (Integer) v.getTag();
-		switch (v.getId()) {
-		case R.id.list_item_google_cards_travel_explore:
-			// click on explore button
-			break;
-		case R.id.list_item_google_cards_travel_share:
-			// click on share button
-			break;
-		}
+//		switch (v.getId()) {
+//		case R.id.list_item_google_cards_travel_explore:
+//			// click on explore button
+//			break;
+//		case R.id.list_item_google_cards_travel_share:
+//			// click on share button
+//			break;
+//		}
 	}
 }

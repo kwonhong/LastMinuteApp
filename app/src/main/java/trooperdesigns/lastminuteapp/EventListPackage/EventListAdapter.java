@@ -1,6 +1,7 @@
 package trooperdesigns.lastminuteapp.EventListPackage;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -41,115 +43,97 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
 	}
 
 	// Customize the layout by overriding getItemView
 	@Override
-	public View getItemView(ParseObject event, View convertView, ViewGroup parent) {
+	public View getItemView(ParseObject parseObject, View convertView, ViewGroup parentView) {
 
-		final ViewHolder holder;
-		if (convertView == null) {
-			convertView = mInflater.inflate(
-					R.layout.list_item_google_cards_travel, parent, false);
-			holder = new ViewHolder();
-			holder.image = (ImageView) convertView
-					.findViewById(R.id.list_item_google_cards_travel_image);
-			holder.categoryName = (TextView) convertView
-					.findViewById(R.id.list_item_google_cards_travel_category_name);
-			holder.title = (TextView) convertView
-					.findViewById(R.id.list_item_google_cards_travel_title);
-			holder.text = (TextView) convertView
-					.findViewById(R.id.list_item_google_cards_travel_text);
-			holder.explore = (TextView) convertView
-					.findViewById(R.id.list_item_google_cards_travel_explore);
-			holder.share = (TextView) convertView
-					.findViewById(R.id.list_item_google_cards_travel_share);
-			holder.explore.setOnClickListener(this);
-			holder.share.setOnClickListener(this);
-			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}
+		convertView =  (convertView == null) ? setUpConvertView(event, convertView, parentView)
+				: convertView;
+		ViewHolder holder = (ViewHolder) convertView.getTag();
 
-//		DummyModel item = getItem(position);
-//		ImageUtil.displayImage(holder.image, item.getImageURL(), null);
-//		holder.title.setText(item.getText());
-//		holder.explore.setTag(position);
-//		holder.share.setTag(position);
-
-		holder.title.setText(event.getString("title"));
-		holder.text.setText(event.getString("details"));
+		// Setting Other TextVies
+		holder.title.setText(parseObject.getString("title"));
+//		holder.title.setText("Basketball");
+		holder.text.setText("Basketball 4 vs 4. Please come join." +
+				" It will be really fun!! See you guys all there");
+		holder.categoryName.setText("Sports");
+		setStatusColor(holder.image, Invitation.Status.values()[0]);
 
 		return convertView;
+	}
 
+	private View setUpConvertView(ParseObject parseObject, View convertView, ViewGroup parentView) {
 
-//
-//		if (v == null) {
-//			v = View.inflate(getContext(), R.layout.row, null);
-//		}
-//
-//		super.getItemView(event, v, parent);
-//
-//		this.event = event;
-//
-//		// Add and download the image
-//		ParseImageView eventImage = (ParseImageView) v.findViewById(R.id.icon);
-//		eventImage.setFocusable(false);
-//		ParseFile imageFile = event.getParseFile("image");
-//		if (imageFile != null) {
-//			eventImage.setParseFile(imageFile);
-//			eventImage.loadInBackground();
-//		}
-//
-//		// Add the title view
-//		TextView titleTextView = (TextView) v.findViewById(R.id.eventTitle);
-//		titleTextView.setFocusable(false);
-//		titleTextView.setText(event.getString("title").toUpperCase());
-//
-//		// TextView for Location (using details for dummy)
-//		TextView locationTextView = (TextView) v.findViewById(R.id.eventLocation);
-//		locationTextView.setFocusable(false);
-//		locationTextView.setText(event.getString("details").toUpperCase());
-//
-//		// TODO: Check that dates exist, otherwise parsing error
-//
-//		// get Date object and use for formatting
-//		Date startDate = event.getDate("startTime");
-//		Date endDate = event.getDate("endTime");
-//
-//		SimpleDateFormat dateFormat;
-//
-//		dateFormat = new SimpleDateFormat("MM");
-//		String month = getMonthName(Integer.parseInt(dateFormat.format(startDate))).toUpperCase();
-//
-//		// textView for Date
-//		dateFormat = new SimpleDateFormat(" dd yyyy");
-//		TextView dateTextView = (TextView) v.findViewById(R.id.eventDate);
-//		dateTextView.setFocusable(false);
-//		dateTextView.setText(month + dateFormat.format(startDate));
-//
-//		// textView for start time
-//		dateFormat = new SimpleDateFormat("hh:mma");
-//		TextView timeTextView = (TextView) v.findViewById(R.id.eventTime);
-//		timeTextView.setFocusable(false);
-//		timeTextView.setText(dateFormat.format(startDate) + " - " + dateFormat.format(endDate));
-//
-//		return v;
+		// Inflating Custom View
+		convertView = mInflater.inflate(
+				R.layout.list_item_google_cards_travel,
+				parentView,
+				false);
+
+		// Setting the view holder
+		ViewHolder holder = new ViewHolder();
+		holder.image = (ImageView) convertView.findViewById(R.id.list_item_google_cards_travel_image);
+		holder.categoryName = (TextView) convertView.findViewById(R.id.list_item_google_cards_travel_category_name);
+		holder.title = (TextView) convertView.findViewById(R.id.list_item_google_cards_travel_title);
+		holder.text = (TextView) convertView.findViewById(R.id.list_item_google_cards_travel_text);
+
+		// Configuring Buttons
+		convertView.findViewById(R.id.btnAccept).setOnClickListener(this);
+		convertView.findViewById(R.id.btnDecline).setOnClickListener(this);
+		convertView.findViewById(R.id.btnOnMyWay).setOnClickListener(this);
+		convertView.findViewById(R.id.btnAccept).setTag(holder.image);
+		convertView.findViewById(R.id.btnDecline).setTag(holder.image);
+		convertView.findViewById(R.id.btnOnMyWay).setTag(holder.image);
+
+		// Returning the holder
+		convertView.setTag(holder);
+		return convertView;
 	}
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		int possition = (Integer) v.getTag();
 		switch (v.getId()) {
-			case R.id.list_item_google_cards_travel_explore:
-				// click on explore button
+			case R.id.btnAccept:
+				setStatusColor((ImageView) v.getTag(), Invitation.Status.ACCEPT);
+				Toast.makeText(getContext(), "Accept", Toast.LENGTH_SHORT).show();
 				break;
-			case R.id.list_item_google_cards_travel_share:
-				// click on share button
+			case R.id.btnDecline:
+				setStatusColor((ImageView) v.getTag(), Invitation.Status.DECLINE);
+				Toast.makeText(getContext(), "Decline", Toast.LENGTH_SHORT).show();
 				break;
+			case R.id.btnOnMyWay:
+				setStatusColor((ImageView) v.getTag(), Invitation.Status.ON_MY_WAY);
+				Toast.makeText(getContext(), "On my Way", Toast.LENGTH_SHORT).show();
+				break;
+
+			default:
+				//TODO REPORT ERROR
+
 		}
+	}
+
+	private void setStatusColor(ImageView imageView, Invitation.Status status) {
+
+		switch (status) {
+			case PENDING:
+				imageView.setBackgroundColor(Color.parseColor("#99ffff00"));
+				break;
+			case ACCEPT:
+				imageView.setBackgroundColor(Color.parseColor("#99669999"));
+				break;
+			case DECLINE:
+				imageView.setBackgroundColor(Color.parseColor("#99ff0000"));
+				break;
+			case ON_MY_WAY:
+				imageView.setBackgroundColor(Color.parseColor("#99FF9900"));
+				break;
+			default:
+				//TODO REPORT ERROR
+		}
+
 	}
 
 	private static class ViewHolder {
@@ -157,9 +141,30 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 		public TextView categoryName;
 		public TextView title;
 		public TextView text;
-		public TextView explore;
-		public TextView share;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	String getMonthName(int num) {
 		String month = "wrong";

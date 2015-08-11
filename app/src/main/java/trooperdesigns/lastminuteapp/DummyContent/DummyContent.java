@@ -1,7 +1,7 @@
 package trooperdesigns.lastminuteapp.DummyContent;
 
-import trooperdesigns.lastminuteapp.EventListPackage.ImageGalleryCategoryModel;
-import trooperdesigns.lastminuteapp.EventListPackage.ImageGallerySubcategoryModel;
+import trooperdesigns.lastminuteapp.RandomPackage.ImageGalleryCategoryModel;
+import trooperdesigns.lastminuteapp.RandomPackage.ImageGallerySubcategoryModel;
 import trooperdesigns.lastminuteapp.R;
 
 import java.util.ArrayList;

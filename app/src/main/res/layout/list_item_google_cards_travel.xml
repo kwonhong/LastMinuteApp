@@ -10,9 +10,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="100dp"
         android:layout_weight="1"
-        android:minHeight="190dp" >
+        android:minHeight="100dp" >
 
         <ImageView
             android:id="@+id/list_item_google_cards_travel_image"
@@ -77,37 +77,37 @@
             android:gravity="right" >
 
             <trooperdesigns.lastminuteapp.font.RobotoTextView
-                android:id="@+id/list_item_google_cards_travel_explore"
+                android:id="@+id/btnAccept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@drawable/transparent_button_selector"
                 android:padding="8dp"
-                android:text="EXPLORE"
+                android:text="ACCEPT"
                 android:textColor="@color/main_color_500"
                 android:textSize="14sp"
                 app:typeface="robotoMedium" />
 
             <trooperdesigns.lastminuteapp.font.RobotoTextView
-                android:id="@+id/list_item_google_cards_travel_share"
+                android:id="@+id/btnDecline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@drawable/transparent_button_selector"
                 android:padding="8dp"
-                android:text="SHARE"
+                android:text="DECLINE"
                 android:textColor="@color/main_color_500"
                 android:textSize="14sp"
                 app:typeface="robotoMedium" />
 
             <trooperdesigns.lastminuteapp.font.RobotoTextView
-                android:id="@+id/additionalButton"
+                android:id="@+id/btnOnMyWay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@drawable/transparent_button_selector"
                 android:padding="8dp"
-                android:text="SHARE"
+                android:text="ON MY WAY"
                 android:textColor="@color/main_color_500"
                 android:textSize="14sp"
                 app:typeface="robotoMedium" />

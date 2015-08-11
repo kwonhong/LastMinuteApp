@@ -41,7 +41,7 @@ public class DrawerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drawer);
 
         initializeVariables();
-        setUpToolBar();
+//        setUpToolBar();
         setupFloatingButton();
         setUpNavigationDrawerListView();
         setUpParseHandler();

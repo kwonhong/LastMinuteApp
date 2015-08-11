@@ -1,4 +1,4 @@
-package trooperdesigns.lastminuteapp.EventListPackage;
+package trooperdesigns.lastminuteapp.RandomPackage;
 
 import android.os.Parcel;
 import android.os.Parcelable;
