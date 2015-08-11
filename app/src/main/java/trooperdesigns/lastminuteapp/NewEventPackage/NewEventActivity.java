@@ -7,16 +7,25 @@ import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import trooperdesigns.lastminuteapp.R;
+import trooperdesigns.lastminuteapp.UtilPackage.ImageUtil;
 
-public class NewEventActivity extends AppCompatActivity {
+public class NewEventActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CardView cardView1, cardView2, cardView3;
     private ObjectAnimator cardViewMover1, cardViewMover2, cardViewMover3;
     private int currentCard;
+
+    private TextView socialCheck1;
+    private TextView socialCheck2;
+    private TextView socialCheck3;
+    private ImageView socialImage1;
+    private ImageView socialImage2;
+    private ImageView socialImage3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,22 @@ public class NewEventActivity extends AppCompatActivity {
 
         nextButton3.setOnClickListener(nextClickHandler);
         backButton3.setOnClickListener(backClickHandler);
+
+        socialCheck1 = (TextView) findViewById(R.id.fragment_check_boxes_social_check1);
+        socialCheck2 = (TextView) findViewById(R.id.fragment_check_boxes_social_check2);
+        socialCheck3 = (TextView) findViewById(R.id.fragment_check_boxes_social_check3);
+        socialImage1 = (ImageView) findViewById(R.id.fragment_check_boxes_social_image1);
+        socialImage2 = (ImageView) findViewById(R.id.fragment_check_boxes_social_image2);
+        socialImage3 = (ImageView) findViewById(R.id.fragment_check_boxes_social_image3);
+
+
+        socialCheck1.setOnClickListener(this);
+        socialCheck2.setOnClickListener(this);
+        socialCheck3.setOnClickListener(this);
+
+        ImageUtil.displayRoundImage(socialImage1, "http://pengaja.com/uiapptemplate/newphotos/profileimages/1.jpg", null);
+        ImageUtil.displayRoundImage(socialImage2, "http://pengaja.com/uiapptemplate/newphotos/profileimages/2.jpg", null);
+        ImageUtil.displayRoundImage(socialImage3, "http://pengaja.com/uiapptemplate/newphotos/profileimages/3.jpg", null);
 
     }
 
@@ -122,6 +147,43 @@ public class NewEventActivity extends AppCompatActivity {
             case(3):
                 break;
             default:
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        // TODO Auto-generated method stub
+        switch (v.getId()) {
+            case R.id.fragment_check_boxes_social_check1:
+                // click on explore button
+                if (socialCheck1.getText() == getString(R.string.material_icon_check_empty)) {
+                    socialCheck1
+                            .setText(getString(R.string.material_icon_check_full));
+                } else {
+                    socialCheck1
+                            .setText(getString(R.string.material_icon_check_empty));
+                }
+                break;
+            case R.id.fragment_check_boxes_social_check2:
+                // click on explore button
+                if (socialCheck2.getText() == getString(R.string.material_icon_check_empty)) {
+                    socialCheck2
+                            .setText(getString(R.string.material_icon_check_full));
+                } else {
+                    socialCheck2
+                            .setText(getString(R.string.material_icon_check_empty));
+                }
+                break;
+            case R.id.fragment_check_boxes_social_check3:
+                // click on explore button
+                if (socialCheck3.getText() == getString(R.string.material_icon_check_empty)) {
+                    socialCheck3
+                            .setText(getString(R.string.material_icon_check_full));
+                } else {
+                    socialCheck3
+                            .setText(getString(R.string.material_icon_check_empty));
+                }
                 break;
         }
     }

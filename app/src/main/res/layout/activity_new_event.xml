@@ -58,7 +58,7 @@
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true">
 
-        <include layout="@layout/new_event_invite_friends_step" android:id="@+id/new_event_details_step" />
+        <include layout="@layout/new_event_invite_friends_step" android:id="@+id/new_event_invite_friends_step" />
 
     </android.support.v7.widget.CardView>
 
