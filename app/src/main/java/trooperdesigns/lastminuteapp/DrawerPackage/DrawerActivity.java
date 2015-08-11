@@ -18,6 +18,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import trooperdesigns.lastminuteapp.EventListPackage.EventsFragment;
 import trooperdesigns.lastminuteapp.GoogleCardsActivity;
+import trooperdesigns.lastminuteapp.NewEventPackage.NewEventActivity;
 import trooperdesigns.lastminuteapp.R;
 import trooperdesigns.lastminuteapp.UtilPackage.ParseHandler;
 
@@ -57,7 +58,7 @@ public class DrawerActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), GoogleCardsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), NewEventActivity.class);
                 startActivity(intent);
 
             }
@@ -75,7 +76,7 @@ public class DrawerActivity extends AppCompatActivity {
 
         // Setup current Fragment as EventListFragment
         fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, navigationDrawerItems[EVENT_LIST_FRAGMENT_INDEX].getFragment())
+                .replace(R.id.frameContainer, navigationDrawerItems[EVENT_LIST_FRAGMENT_INDEX].getFragment())
                 .commit();
 
         // Setup Drawer Fragment list click listener
@@ -85,7 +86,7 @@ public class DrawerActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Fragment fragment = navigationDrawerItems[position].getFragment();
-                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.frameContainer, fragment).commit();
                 drawerLayout.closeDrawer(navigationDrawerRelativeLayout);
             }
         });

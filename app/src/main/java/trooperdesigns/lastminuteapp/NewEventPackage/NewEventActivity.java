@@ -1,18 +1,40 @@
 package trooperdesigns.lastminuteapp.NewEventPackage;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import trooperdesigns.lastminuteapp.R;
 
 public class NewEventActivity extends AppCompatActivity {
 
+    LinearLayout linearLayout;
+    CardView cardView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
+
+        linearLayout = (LinearLayout) findViewById(R.id.layout);
+        cardView = (CardView) findViewById(R.id.cardview);
+
+        TextView additionalButton = (TextView) findViewById(R.id.additionalButton);
+        additionalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ObjectAnimator incomeBtnMover = ObjectAnimator.ofFloat(cardView, "translationX", 0, -cardView.getWidth());
+                incomeBtnMover.setDuration(100);
+                incomeBtnMover.start();
+            }
+        });
 
 
     }
