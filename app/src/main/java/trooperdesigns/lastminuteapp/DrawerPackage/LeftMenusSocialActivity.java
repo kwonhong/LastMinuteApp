@@ -34,8 +34,8 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_drawer);
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+//		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//		setSupportActionBar(toolbar);
 		getSupportActionBar().setTitle("Friends and Foes");
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mTitle = mDrawerTitle = getTitle();
@@ -62,18 +62,18 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 		mDrawerList.getLayoutParams().width = (int) getResources()
 				.getDimension(R.dimen.drawer_width_social);
 
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
-				R.string.drawer_open, R.string.drawer_close) {
-			public void onDrawerClosed(View view) {
-				getSupportActionBar().setTitle(mTitle);
-				invalidateOptionsMenu();
-			}
-
-			public void onDrawerOpened(View drawerView) {
-				getSupportActionBar().setTitle(mDrawerTitle);
-				invalidateOptionsMenu();
-			}
-		};
+//		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
+//				R.string.drawer_open, R.string.drawer_close) {
+//			public void onDrawerClosed(View view) {
+//				getSupportActionBar().setTitle(mTitle);
+//				invalidateOptionsMenu();
+//			}
+//
+//			public void onDrawerOpened(View drawerView) {
+//				getSupportActionBar().setTitle(mDrawerTitle);
+//				invalidateOptionsMenu();
+//			}
+//		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 		if (savedInstanceState == null) {

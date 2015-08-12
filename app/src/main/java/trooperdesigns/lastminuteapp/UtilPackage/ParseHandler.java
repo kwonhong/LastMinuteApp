@@ -38,6 +38,7 @@ public class ParseHandler {
         ParseInstallation.getCurrentInstallation().saveEventually();
         ParseUser.enableAutomaticUser();
 
+
     }
 
     public void parseLogin() {
@@ -63,6 +64,5 @@ public class ParseHandler {
                         }
                     }
                 });
-
     }
 }

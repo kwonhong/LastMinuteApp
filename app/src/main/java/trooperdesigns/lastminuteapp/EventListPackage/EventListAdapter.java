@@ -18,13 +18,16 @@ import com.parse.ParseQueryAdapter;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import trooperdesigns.lastminuteapp.R;
 
 public class EventListAdapter extends ParseQueryAdapter implements Filterable, View.OnClickListener {
 
-	public static ParseObject event;
+	public static ParseObject parseObject;
 	private LayoutInflater mInflater;
+	private Map<String, ImageView> imageViews;
 
 	@SuppressWarnings("unchecked")
 	public EventListAdapter(Context context) {
@@ -41,6 +44,7 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 			}
 		});
 
+		imageViews = new HashMap<>();
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -49,7 +53,7 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 	@Override
 	public View getItemView(ParseObject parseObject, View convertView, ViewGroup parentView) {
 
-		convertView =  (convertView == null) ? setUpConvertView(event, convertView, parentView)
+		convertView =  (convertView == null) ? setUpConvertView(parseObject, convertView, parentView)
 				: convertView;
 		ViewHolder holder = (ViewHolder) convertView.getTag();
 
@@ -83,9 +87,12 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 		convertView.findViewById(R.id.btnAccept).setOnClickListener(this);
 		convertView.findViewById(R.id.btnDecline).setOnClickListener(this);
 		convertView.findViewById(R.id.btnOnMyWay).setOnClickListener(this);
-		convertView.findViewById(R.id.btnAccept).setTag(holder.image);
-		convertView.findViewById(R.id.btnDecline).setTag(holder.image);
-		convertView.findViewById(R.id.btnOnMyWay).setTag(holder.image);
+		convertView.findViewById(R.id.btnAccept).setTag(parseObject.getObjectId());
+		convertView.findViewById(R.id.btnDecline).setTag(parseObject.getObjectId());
+		convertView.findViewById(R.id.btnOnMyWay).setTag(parseObject.getObjectId());
+
+		// Save ImageView in the map to change background later
+		imageViews.put(parseObject.getObjectId(), holder.image);
 
 		// Returning the holder
 		convertView.setTag(holder);
@@ -97,15 +104,15 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 			case R.id.btnAccept:
-				setStatusColor((ImageView) v.getTag(), Invitation.Status.ACCEPT);
+				handleStatusButton((String) v.getTag(), Invitation.Status.ACCEPT, "Accept Confirmation Message");
 				Toast.makeText(getContext(), "Accept", Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.btnDecline:
-				setStatusColor((ImageView) v.getTag(), Invitation.Status.DECLINE);
+				handleStatusButton((String) v.getTag(), Invitation.Status.DECLINE, "Decline Confirmation Message");
 				Toast.makeText(getContext(), "Decline", Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.btnOnMyWay:
-				setStatusColor((ImageView) v.getTag(), Invitation.Status.ON_MY_WAY);
+				handleStatusChangeAction((String) v.getTag(), Invitation.Status.ON_MY_WAY);
 				Toast.makeText(getContext(), "On my Way", Toast.LENGTH_SHORT).show();
 				break;
 
@@ -113,6 +120,23 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 				//TODO REPORT ERROR
 
 		}
+	}
+
+	private void handleStatusButton(final String parseObjectId, final Invitation.Status status, String confirmMsg) {
+		final ConfirmDialog confirmDialog = new ConfirmDialog(getContext(), confirmMsg);
+		confirmDialog.setCustomDialogListener(new ConfirmDialog.CustomDialogListener() {
+			@Override
+			public void handleConfirmAction() {
+				handleStatusChangeAction(parseObjectId, status);
+				confirmDialog.dismiss();
+			}
+
+			@Override
+			public void handleBackAction() {
+				confirmDialog.dismiss();
+			}
+		});
+		confirmDialog.show();
 	}
 
 	private void setStatusColor(ImageView imageView, Invitation.Status status) {
@@ -133,7 +157,11 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 			default:
 				//TODO REPORT ERROR
 		}
+	}
 
+	private void handleStatusChangeAction(String parseObjectId, Invitation.Status status) {
+		// TODO CALL PARSE BACKEND TO CHANGE STATUS
+		setStatusColor(imageViews.get(parseObjectId), status);
 	}
 
 	private static class ViewHolder {
@@ -142,6 +170,10 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 		public TextView title;
 		public TextView text;
 	}
+
+
+
+
 
 
 	String getMonthName(int num) {
