@@ -1,6 +1,7 @@
 package trooperdesigns.lastminuteapp.DrawerPackage;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -32,11 +34,8 @@ public class DrawerActivity extends AppCompatActivity {
 
     private static int EVENT_LIST_FRAGMENT_INDEX = 0;
 
-    private DrawerLayout drawerLayout;
     private Toolbar toolbar;
-    private RelativeLayout navigationDrawerRelativeLayout;
     private FloatingActionButton floatingActionButton;
-    private ListView drawerListView;
     private FragmentManager fragmentManager;
     private ParseHandler parseHandler;
 
@@ -53,8 +52,9 @@ public class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
-        initializeVariables();
         initializeImageLoader();
+        initializeVariables();
+        setUpToolBar();
         setUpParseHandler();
         setupFloatingButton();
         setUpNavigationDrawerListView();
@@ -62,7 +62,6 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     private void setUpParseHandler() {
-
         parseHandler = new ParseHandler(getApplicationContext());
         parseHandler.parseLogin();
     }
@@ -73,7 +72,6 @@ public class DrawerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), NewEventActivity.class);
                 startActivity(intent);
-
             }
         });
     }
@@ -101,8 +99,7 @@ public class DrawerActivity extends AppCompatActivity {
         ImageUtil.displayRoundImage(iv,
                 "http://pengaja.com/uiapptemplate/newphotos/profileimages/0.jpg", null);
 
-        mDrawerList.addHeaderView(headerView);// Add header before adapter (for
-        // pre-KitKat)
+        mDrawerList.addHeaderView(headerView);// Add header before adapter (for pre-KitKat)
         mDrawerList.setAdapter(new DrawerSocialAdapter(this));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         int color = getResources().getColor(R.color.material_grey_100);
@@ -115,18 +112,16 @@ public class DrawerActivity extends AppCompatActivity {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerClosed(View view) {
-                //getSupportActionBar().setTitle(mTitle);
+                getSupportActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                //getSupportActionBar().setTitle(mDrawerTitle);
+                getSupportActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu();
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-
     }
 
     private class DrawerItemClickListener implements
@@ -141,29 +136,16 @@ public class DrawerActivity extends AppCompatActivity {
         }
     }
 
-    private void setUpToolBar() {
+    private void initializeVariables() {
+        fragmentManager = getSupportFragmentManager();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingBtn);
+    }
 
+    private void setUpToolBar() {
         // Setting title.
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
-
-        // Setting the Click Listener & Icon
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout.openDrawer(navigationDrawerRelativeLayout);
-            }
-        });
-    }
-
-    private void initializeVariables() {
-        fragmentManager = getSupportFragmentManager();
-//        drawerListView = (ListView) findViewById(R.id.drawerListview);
-//        drawerLayout = (DrawerLayout) findViewById(R.id.layout_dashboard);
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        navigationDrawerRelativeLayout = (RelativeLayout) findViewById(R.id.navigation_drawer_container);
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingBtn);
     }
 
     private void initializeImageLoader() {
@@ -171,5 +153,36 @@ public class DrawerActivity extends AppCompatActivity {
         if (!imageLoader.isInited()) {
             imageLoader.init(ImageLoaderConfiguration.createDefault(this));
         }
+    }
+
+    @Override
+    public void setTitle(int titleId) {
+        setTitle(getString(titleId));
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        mTitle = title;
+        getSupportActionBar().setTitle(mTitle);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
