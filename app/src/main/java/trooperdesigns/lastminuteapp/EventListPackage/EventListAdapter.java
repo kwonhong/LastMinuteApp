@@ -1,6 +1,7 @@
 package trooperdesigns.lastminuteapp.EventListPackage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import trooperdesigns.lastminuteapp.EventDetailPackage.EventDetailActivity;
 import trooperdesigns.lastminuteapp.R;
 
 public class EventListAdapter extends ParseQueryAdapter implements Filterable, View.OnClickListener {
@@ -91,6 +93,10 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 		convertView.findViewById(R.id.btnDecline).setTag(parseObject.getObjectId());
 		convertView.findViewById(R.id.btnOnMyWay).setTag(parseObject.getObjectId());
 
+		// Event Container
+		convertView.findViewById(R.id.eventContainer).setOnClickListener(this);
+		convertView.findViewById(R.id.eventContainer).setTag(parseObject.getObjectId());
+
 		// Save ImageView in the map to change background later
 		imageViews.put(parseObject.getObjectId(), holder.image);
 
@@ -115,11 +121,19 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 				handleStatusChangeAction((String) v.getTag(), Invitation.Status.ON_MY_WAY);
 				Toast.makeText(getContext(), "On my Way", Toast.LENGTH_SHORT).show();
 				break;
+			case R.id.eventContainer:
+				startDetailActivity((String) v.getTag());
+				break;
 
 			default:
 				//TODO REPORT ERROR
 
 		}
+	}
+
+	private void startDetailActivity(String tag) {
+		Intent intent = new Intent(getContext(), EventDetailActivity.class);
+		getContext().startActivity(intent);
 	}
 
 	private void handleStatusButton(final String parseObjectId, final Invitation.Status status, String confirmMsg) {
