@@ -10,15 +10,17 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
+        <include layout="@layout/toolbar"
+            android:id="@+id/toolbar"/>
 
         <FrameLayout
             android:id="@+id/frameContainer"
+            android:layout_marginTop="?android:actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>
-
 
         <com.melnykov.fab.FloatingActionButton
             xmlns:fab="http://schemas.android.com/apk/res-auto"
