@@ -8,16 +8,12 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 
-import trooperdesigns.lastminuteapp.DummyContent.DummyModel;
 import trooperdesigns.lastminuteapp.R;
 
 public class EventsFragment extends ListFragment implements OnDismissCallback {
@@ -78,19 +74,19 @@ public class EventsFragment extends ListFragment implements OnDismissCallback {
 		listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
 		listView.setAdapter(swingBottomInAnimationAdapter);
 
-		listView.setOnItemLongClickListener(new OnItemLongClickListener(){
-
-			@Override
-			public boolean onItemLongClick(AdapterView<?> list, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				DummyModel object = (DummyModel) list.getItemAtPosition(position);
-				Toast.makeText(getActivity(), "Long click on: " + position + ": " + object.getText(),
-						Toast.LENGTH_SHORT).show();
-				return true;
-			}
-
-		});
+//		listView.setOnItemLongClickListener(new OnItemLongClickListener(){
+//
+//			@Override
+//			public boolean onItemLongClick(AdapterView<?> list, View view,
+//					int position, long id) {
+//				// TODO Auto-generated method stub
+//				DummyModel object = (DummyModel) list.getItemAtPosition(position);
+//				Toast.makeText(getActivity(), "Long click on: " + position + ": " + object.getText(),
+//						Toast.LENGTH_SHORT).show();
+//				return true;
+//			}
+//
+//		});
 	}
 
 	@Override
