@@ -2,6 +2,7 @@ package trooperdesigns.lastminuteapp.NewEventPackage;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.Menu;
@@ -11,6 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import trooperdesigns.lastminuteapp.EventListPackage.EventsFragment;
 import trooperdesigns.lastminuteapp.R;
 import trooperdesigns.lastminuteapp.UtilPackage.ImageUtil;
 
@@ -27,10 +32,23 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
     private ImageView socialImage2;
     private ImageView socialImage3;
 
+    // TODO: empty allContacts list when event is created
+    static List<Contact> allContacts = new ArrayList<>();
+    List<Contact> selectedContacts = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
+
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        EventsFragment eventsFragment = new EventsFragment();
+
+        // Setup current Fragment as EventListFragment
+        fragmentManager.beginTransaction()
+                .replace(R.id.frameContainer, eventsFragment)
+                .commit();
 
         cardView1 = (CardView) findViewById(R.id.cardview1);
         cardView2 = (CardView) findViewById(R.id.cardview2);
