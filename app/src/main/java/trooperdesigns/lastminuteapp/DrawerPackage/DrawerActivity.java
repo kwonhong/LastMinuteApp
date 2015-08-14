@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -24,7 +22,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import trooperdesigns.lastminuteapp.EventListPackage.EventsFragment;
-import trooperdesigns.lastminuteapp.GoogleCardsActivity;
 import trooperdesigns.lastminuteapp.NewEventPackage.NewEventActivity;
 import trooperdesigns.lastminuteapp.NewEventPackage.ViewContactsActivity;
 import trooperdesigns.lastminuteapp.R;

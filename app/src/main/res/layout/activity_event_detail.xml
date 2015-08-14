@@ -1,12 +1,264 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="trooperdesigns.lastminuteapp.EventDetailPackage.EventDetailActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/google_cards_background_bottom"
+    android:orientation="vertical">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
-</RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- Information -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="vertical">
+
+                    <trooperdesigns.lastminuteapp.font.RobotoTextView
+                        android:id="@+id/descriptionTxtView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="left"
+                        android:maxLines="3"
+                        android:text="@string/lorem_ipsum_long"
+                        android:textColor="@color/material_blue_grey_700"
+                        android:textSize="14sp"
+                        app:typeface="robotoRegular" />
+
+                    <trooperdesigns.lastminuteapp.font.RobotoTextView
+                        android:id="@+id/timeRemainingTxtView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="16dp"
+                        android:gravity="right"
+                        android:textColor="@color/material_blue_grey_950"
+                        android:textSize="20sp"
+                        app:typeface="robotoRegular" />
+                </LinearLayout>
+
+                <!-- Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
+
+                    <trooperdesigns.lastminuteapp.font.RobotoTextView
+                        android:id="@+id/btnAccept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/transparent_button_selector"
+                        android:padding="8dp"
+                        android:text="ACCEPT"
+                        android:textColor="@color/material_green_900"
+                        android:textSize="14sp"
+                        app:typeface="robotoMedium" />
+
+                    <trooperdesigns.lastminuteapp.font.RobotoTextView
+                        android:id="@+id/btnDecline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/transparent_button_selector"
+                        android:padding="8dp"
+                        android:text="DECLINE"
+                        android:textColor="@color/material_red_900"
+                        android:textSize="14sp"
+                        app:typeface="robotoMedium" />
+
+                    <trooperdesigns.lastminuteapp.font.RobotoTextView
+                        android:id="@+id/btnOnMyWay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/transparent_button_selector"
+                        android:padding="8dp"
+                        android:text="ON MY WAY"
+                        android:textColor="@color/material_orange_900"
+                        android:textSize="14sp"
+                        app:typeface="robotoMedium" />
+                </LinearLayout>
+
+                <!-- Map -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:paddingTop="16dp">
+
+                    <trooperdesigns.lastminuteapp.font.RobotoTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Location Information"
+                        android:textColor="@color/material_yellow_600"
+                        android:textSize="16sp"
+                        app:typeface="robotoLight" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@color/material_yellow_600" />
+
+                    <fragment
+                        android:id="@+id/map"
+                        class="com.google.android.gms.maps.MapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_margin="10dp"
+                        android:contentDescription="@string/cd_main_image"
+                        android:scaleType="centerCrop" />
+
+
+                </LinearLayout>
+
+                <!-- Friend List -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp">
+
+                    <trooperdesigns.lastminuteapp.font.RobotoTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/event_select_friends"
+                        android:textColor="@color/material_yellow_600"
+                        android:textSize="16sp"
+                        app:typeface="robotoLight" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@color/material_yellow_600" />
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imgView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_margin="8dp"
+                            android:layout_weight="0"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/green_circle" />
+
+                        <trooperdesigns.lastminuteapp.font.RobotoTextView
+                            android:id="@+id/nameTxtView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="Name Surname"
+                            android:textColor="@color/material_blue_grey_950"
+                            android:textSize="16dp"
+                            app:typeface="robotoRegular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imgView2"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_margin="8dp"
+                            android:layout_weight="0"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/green_circle" />
+
+                        <trooperdesigns.lastminuteapp.font.RobotoTextView
+                            android:id="@+id/nameTxtView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="Name Surname"
+                            android:textColor="@color/material_blue_grey_950"
+                            android:textSize="16dp"
+                            app:typeface="robotoRegular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:paddingRight="10dp"
+                        android:gravity="right">
+
+                        <trooperdesigns.lastminuteapp.font.RobotoTextView
+                            android:id="@+id/moreInviteeBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/transparent_button_selector"
+                            android:padding="8dp"
+                            android:text="See All Invitees"
+                            android:textColor="@color/material_yellow_600"
+                            android:textSize="14sp"
+                            android:gravity="right"
+                            app:typeface="robotoMedium" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+
+</LinearLayout>

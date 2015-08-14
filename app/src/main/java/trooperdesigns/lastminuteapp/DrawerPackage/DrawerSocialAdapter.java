@@ -7,10 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-
+import java.util.Collections;
 import java.util.List;
 
-import trooperdesigns.lastminuteapp.DummyContent.DummyContent;
 import trooperdesigns.lastminuteapp.DummyContent.DummyModel;
 import trooperdesigns.lastminuteapp.R;
 
@@ -22,7 +21,8 @@ public class DrawerSocialAdapter extends BaseAdapter {
 	public DrawerSocialAdapter(Context context) {
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		mDrawerItems = DummyContent.getSocialDummyList();
+//		mDrawerItems = DummyContent.getSocialDummyList();
+		mDrawerItems = Collections.emptyList();
 	}
 
 	@Override
@@ -56,10 +56,10 @@ public class DrawerSocialAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		DummyModel item = mDrawerItems.get(position);
-
-		holder.icon.setText(item.getIconRes());
-		holder.title.setText(item.getText());
+//		DummyModel item = mDrawerItems.get(position);
+//
+//		holder.icon.setText(item.getIconRes());
+//		holder.title.setText(item.getText());
 
 		return convertView;
 	}

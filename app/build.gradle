@@ -27,4 +27,5 @@ dependencies {
     compile 'com.parse.bolts:bolts-android:1.+'
     compile fileTree(dir: 'libs', include: 'Parse-*.jar')
     provided 'org.projectlombok:lombok:1.16.4'
+    compile 'com.google.android.gms:play-services-maps:6.5.87'
 }

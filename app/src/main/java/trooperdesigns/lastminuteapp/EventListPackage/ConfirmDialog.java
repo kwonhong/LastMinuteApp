@@ -20,10 +20,10 @@ public class ConfirmDialog extends Dialog {
 
     public ConfirmDialog(Context context, String confirmMsg) {
         super(context);
-        setAcceptDialogContent(confirmMsg);
+        setDialogContent(confirmMsg);
     }
 
-    private void setAcceptDialogContent(String confirmMsg) {
+    private void setDialogContent(String confirmMsg) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setContentView(R.layout.custom_confirm_dialog);
         this.setTitle(null);

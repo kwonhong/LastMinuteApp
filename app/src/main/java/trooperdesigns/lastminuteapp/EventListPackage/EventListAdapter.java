@@ -55,15 +55,16 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 
 		convertView =  (convertView == null) ? setUpConvertView(parseObject, convertView, parentView)
 				: convertView;
-		ViewHolder holder = (ViewHolder) convertView.getTag();
 
 		// Setting Other TextVies
+		ViewHolder holder = (ViewHolder) convertView.getTag();
 		holder.title.setText(parseObject.getString("title"));
 //		holder.title.setText("Basketball");
-		holder.text.setText("Basketball 4 vs 4. Please come join." +
-				" It will be really fun!! See you guys all there");
+		holder.text.setText("Basketball 4 vs 4. Please come join. It will be really fun!! See you guys all there");
 		holder.categoryName.setText("Sports");
 		setStatusColor(holder.image, Invitation.Status.values()[0]);
+
+		//TODO Set ParseObject inside the holder.
 
 		return convertView;
 	}
@@ -105,15 +106,15 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 		switch (v.getId()) {
 			case R.id.btnAccept:
 				handleStatusButton((String) v.getTag(), Invitation.Status.ACCEPT, "Accept Confirmation Message");
-				Toast.makeText(getContext(), "Accept", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), (String) v.getTag(), Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.btnDecline:
 				handleStatusButton((String) v.getTag(), Invitation.Status.DECLINE, "Decline Confirmation Message");
-				Toast.makeText(getContext(), "Decline", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), (String) v.getTag(), Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.btnOnMyWay:
 				handleStatusChangeAction((String) v.getTag(), Invitation.Status.ON_MY_WAY);
-				Toast.makeText(getContext(), "On my Way", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), (String) v.getTag(), Toast.LENGTH_SHORT).show();
 				break;
 
 			default:
@@ -164,7 +165,7 @@ public class EventListAdapter extends ParseQueryAdapter implements Filterable, V
 		setStatusColor(imageViews.get(parseObjectId), status);
 	}
 
-	private static class ViewHolder {
+	public static class ViewHolder {
 		public ImageView image;
 		public TextView categoryName;
 		public TextView title;
