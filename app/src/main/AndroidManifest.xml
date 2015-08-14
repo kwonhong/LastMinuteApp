@@ -18,6 +18,13 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 
+    <!-- Google Map Permissions -->
+    <permission android:name="trooperdesigns.lastminuteapp.googlemapsproject.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="trooperdesigns.lastminuteapp.googlemapsproject.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

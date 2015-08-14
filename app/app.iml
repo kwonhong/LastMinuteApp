@@ -107,9 +107,13 @@
     <orderEntry type="library" exported="" name="recyclerview-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="listviewanimations_lib-core-slh_3.1.0" level="project" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <orderEntry type="library" exported="" name="joda-time-1.6" level="project" />
 >>>>>>> 8f0894c... EventDetailActivity UI finished
+=======
+    <orderEntry type="library" exported="" name="joda-time-1.6" level="project" />
+>>>>>>> 8f0894c0e924741df32be466558d431ec1f7888c
     <orderEntry type="library" exported="" name="listviewanimations_lib-core_3.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="library-2.4.0" level="project" />

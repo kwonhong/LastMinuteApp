@@ -2,123 +2,123 @@
 <items version="2" >
 
     <item
-        jar="/Users/james/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/library-2.4.0-6f9172dc586de0a1f3fa025234fa71f2cf6c67bf.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-92d89e2a86595c7a71192b0f1a1079b64094f0d9.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-0e137942d210db615cd74a964562c4d40d49a76e.jar" />
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-e4e9871ab96280bf40d784cf2515e28d708fe195.jar" />
     </item>
     <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/libs/listviewanimations_lib-manipulation_3.1.0.jar"
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/libs/listviewanimations_lib-manipulation_3.1.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="63737e512fcd9e0ebe9bcd0bb375c2dded74116f">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/listviewanimations_lib-manipulation_3.1.0-6ad40569e3a150a2ea7ed30a5f33fdc87a716627.jar" />
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/listviewanimations_lib-manipulation_3.1.0-574100e050e06102e62333a01824aa08d120e49e.jar" />
     </item>
     <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-ab628ceb52714a2c5e6dad30a31da399d2d915d7.jar" />
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-30f6b249c5101e254676cc6d44bd7ded13ef558b.jar" />
     </item>
     <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.3/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-fe6b44662dfe996f8908a0d8ba34171815f4fbeb.jar" />
-    </item>
-    <item
-        jar="/Users/james/Documents/Program Platforms/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-1eefee47279f2291be02490dffddc1f30ed3809d.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/6.5.87/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="95482e7c792a7c0d5a9d5461e97726bd54fe9549">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-fac411e29b3145bd85f2e894acd45c3dc310e7b5.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/libs/joda-time-1.6.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="5a18504e34c5cbe9259d6fd0123ccf6f16115a41">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/joda-time-1.6-4ee0c79b10cf796ac8c79400eb65853d10a32ff1.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/libs/listviewanimations_lib-core_3.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f3f9629b068554d8513a2aaf34418171bf430851">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/listviewanimations_lib-core_3.1.0-e5ea221c80831509f035bf572c6249ff91454c5f.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-1f787c54237a6d30f65e035005511f2ffe00bcae.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/6.5.87/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a75b29dc51b364df032af8bcfcad7e54ccfda28d">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-72a0dbcedbd0f5888e586410dfad5dd7670d9db1.jar" />
-    </item>
-    <item
-        jar="/Users/james/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-d700d13b1e248e2dbc22a7685685fd6061828511.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/exploded-aar/com.melnykov/floatingactionbutton/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-11bfeac9e92246a6081baa1a927cc3f09cd5b1ff.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/libs/universal-image-loader-1.9.3.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.3-847c261be4c0854d7297af6c67c2e2f23b697dc2.jar" />
-    </item>
-    <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/libs/listviewanimations_lib-core-slh_3.1.0.jar"
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/libs/listviewanimations_lib-core-slh_3.1.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="a4fe703aabd23e8c287c90396514418119109dd1">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/listviewanimations_lib-core-slh_3.1.0-befbd565ff888947bc0913317d0a8d4671731b0b.jar" />
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/listviewanimations_lib-core-slh_3.1.0-49b0fbcaa8c3b9ec863b3cce290d1ae9080bf910.jar" />
     </item>
     <item
-        jar="/Users/james/GitHub/LastMinuteApp/app/libs/Parse-1.9.4.jar"
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/libs/Parse-1.9.4.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="56c22930b5d4f77015b6a40c7f14103d3e101001">
-        <dex dex="/Users/james/GitHub/LastMinuteApp/app/build/intermediates/pre-dexed/debug/Parse-1.9.4-ffd2ea03f8591ecf41f11770d3d44784e3dede97.jar" />
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/Parse-1.9.4-d445599b401c80f873c9ebf66faf84addcae364a.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/libs/listviewanimations_lib-core_3.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f3f9629b068554d8513a2aaf34418171bf430851">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/listviewanimations_lib-core_3.1.0-e8b5c3ee5793fe1a92ee1c360d60bdb2357fdb36.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/exploded-aar/com.melnykov/floatingactionbutton/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-18fc0790dcea26cb67fce4111b2fc055ad4bc326.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-07597735e82e2f3b95b526b143bb60dd301f8f6a.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/library-2.4.0-2f9412e102c98a17993eb35b1a27f43a6d22a5e0.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-e19f1397ee0bd35736ac4137a61d85f6b1971c05.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/libs/joda-time-1.6.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5a18504e34c5cbe9259d6fd0123ccf6f16115a41">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/joda-time-1.6-62c4c28c04d7d44cd8ee8992f1598ca1903c1317.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/6.5.87/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="95482e7c792a7c0d5a9d5461e97726bd54fe9549">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-1d7cc4a16156eb2fd45abb2d078d02f38961a598.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-633c8b0e40c4551c7416f2e619f73cb0a7b5dbe5.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-94de9d34fd991939842e206eb0149a973024a667.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-b480da2f5cdfde94da32e8257d379fdb8b540d69.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/6.5.87/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a75b29dc51b364df032af8bcfcad7e54ccfda28d">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/classes-08eb6e7b82c53378752e9b79ac7b67a0c9ee3434.jar" />
+    </item>
+    <item
+        jar="/home/juuhhhstin/Documents/LastMinuteApp/app/libs/universal-image-loader-1.9.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
+        <dex dex="/home/juuhhhstin/Documents/LastMinuteApp/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.3-8698ba2bc5e64c06ef1327037a40eb3f2c2af55e.jar" />
     </item>
 
 </items>
