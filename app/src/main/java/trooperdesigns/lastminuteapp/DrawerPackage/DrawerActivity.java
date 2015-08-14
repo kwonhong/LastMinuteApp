@@ -71,7 +71,7 @@ public class DrawerActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ViewContactsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), NewEventActivity.class);
                 startActivity(intent);
             }
         });
