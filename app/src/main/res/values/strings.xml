@@ -175,6 +175,9 @@
     <string name="event_time">Time</string>
     <string name="event_select_friends">Select friends to invite</string>
     <string name="search">Search</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="back">BACK</string>
+    <string name="next">NEXT</string>
 
     <!-- For Update -->
     <string name="confirm_exit">Press Back button again to exit</string>

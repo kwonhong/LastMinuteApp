@@ -7,8 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:gravity="right" >
+        android:layout_gravity="center"
+        android:gravity="right">
 
         <trooperdesigns.lastminuteapp.font.RobotoTextView
             android:id="@+id/back_button_3"
@@ -17,7 +17,7 @@
             android:layout_margin="8dp"
             android:background="@drawable/transparent_button_selector"
             android:padding="8dp"
-            android:text="BACK"
+            android:text="@string/back"
             android:textColor="@color/main_color_500"
             android:textSize="14sp"
             app:typeface="robotoMedium" />
@@ -28,7 +28,7 @@
             android:layout_margin="8dp"
             android:background="@drawable/transparent_button_selector"
             android:padding="8dp"
-            android:text="CONFIRM"
+            android:text="@string/confirm"
             android:textColor="@color/main_color_500"
             android:textSize="14sp"
             app:typeface="robotoMedium" />

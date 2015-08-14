@@ -1,5 +1,6 @@
 package trooperdesigns.lastminuteapp.NewEventPackage;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -9,27 +10,23 @@ import android.database.Cursor;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,24 +34,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import trooperdesigns.lastminuteapp.EventListPackage.EventsFragment;
 import trooperdesigns.lastminuteapp.R;
-import trooperdesigns.lastminuteapp.UtilPackage.ImageUtil;
 import trooperdesigns.lastminuteapp.UtilPackage.StringMatcher;
 import trooperdesigns.lastminuteapp.widget.IndexableListView;
 
-public class NewEventActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class NewEventActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private CardView cardView1, cardView2, cardView3, confirmCardView;
     private ObjectAnimator cardViewMover1, cardViewMover2, cardViewMover3, confirmCardViewMover;
+    private TextView nextButton, nextButton2, backButton, backButton2, backButton3;
     private int currentCard;
-
-    private TextView socialCheck1;
-    private TextView socialCheck2;
-    private TextView socialCheck3;
-    private ImageView socialImage1;
-    private ImageView socialImage2;
-    private ImageView socialImage3;
 
     // TODO: empty allContacts list when event is created
     static List<Contact> allContacts = new ArrayList<>();
@@ -67,10 +56,11 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
     private ArrayList<Contact> contactsResult;
     // used to remove contacts who were unchecked
     private ArrayList<String> uncheckedContacts;
+    private int numSelectedContacts;
 
-    private TextView select;
+    private TextView confirmButton;
     private EditText search;
-    IndexableListView lv;
+    IndexableListView contactsListView;
     public static boolean isKeyboardOpen;
 
     @Override
@@ -78,29 +68,44 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
 
+        initializeVariables();
+        setUpClickHandlers();
+        getAllContacts(this.getContentResolver());
+        setUpContactsList();
+        getNumSelectedContacts();
+    }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        EventsFragment eventsFragment = new EventsFragment();
+    private void initializeVariables() {
 
-        // Setup current Fragment as EventListFragment
-//        fragmentManager.beginTransaction()
-//                .replace(R.id.frameContainer, eventsFragment)
-//                .commit();
-
+        // setup card views
         cardView1 = (CardView) findViewById(R.id.cardview1);
         cardView2 = (CardView) findViewById(R.id.cardview2);
         cardView3 = (CardView) findViewById(R.id.cardview3);
         confirmCardView = (CardView) findViewById(R.id.confirm_card);
 
+        // button variables
+        nextButton = (TextView) findViewById(R.id.next_button);
+        nextButton2 = (TextView) findViewById(R.id.next_button_2);
+        backButton = (TextView) findViewById(R.id.back_button);
+        backButton2 = (TextView) findViewById(R.id.back_button_2);
+        backButton3 = (TextView) findViewById(R.id.back_button_3);
+        confirmButton = (TextView) findViewById(R.id.confirm_button);
+
+        // dynamic search bar variable
+        search = (EditText) findViewById(R.id.search);
+
+        // contact list variables
+        contactsListView = (IndexableListView) findViewById(R.id.lv);
+        contactsAdapter = new ContactsAdapter(getApplicationContext(), NewEventActivity.allContacts);
+
+        // other variables
+        originalContacts = NewEventActivity.allContacts;
+        isKeyboardOpen = false;
         currentCard = 1;
+    }
 
-        TextView nextButton = (TextView) findViewById(R.id.next_button);
-        TextView nextButton2 = (TextView) findViewById(R.id.next_button_2);
-//        TextView nextButton3 = (TextView) findViewById(R.id.next_button_3);
-        TextView backButton = (TextView) findViewById(R.id.back_button);
-        TextView backButton2 = (TextView) findViewById(R.id.back_button_2);
-        TextView backButton3 = (TextView) findViewById(R.id.back_button_3);
-
+    private void setUpClickHandlers() {
+        // generic next and back button click handlers
         View.OnClickListener nextClickHandler = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,39 +119,14 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
             }
         };
 
+        // button handlers
         nextButton.setOnClickListener(nextClickHandler);
         backButton.setOnClickListener(backClickHandler);
-
         nextButton2.setOnClickListener(nextClickHandler);
         backButton2.setOnClickListener(backClickHandler);
-
-//        nextButton3.setOnClickListener(nextClickHandler);
         backButton3.setOnClickListener(backClickHandler);
 
-//        socialCheck1 = (TextView) findViewById(R.id.fragment_check_boxes_social_check1);
-//        socialCheck2 = (TextView) findViewById(R.id.fragment_check_boxes_social_check2);
-//        socialCheck3 = (TextView) findViewById(R.id.fragment_check_boxes_social_check3);
-//        socialImage1 = (ImageView) findViewById(R.id.fragment_check_boxes_social_image1);
-//        socialImage2 = (ImageView) findViewById(R.id.fragment_check_boxes_social_image2);
-//        socialImage3 = (ImageView) findViewById(R.id.fragment_check_boxes_social_image3);
-//
-//
-//        socialCheck1.setOnClickListener(this);
-//        socialCheck2.setOnClickListener(this);
-//        socialCheck3.setOnClickListener(this);
-//
-//        ImageUtil.displayRoundImage(socialImage1, "http://pengaja.com/uiapptemplate/newphotos/profileimages/1.jpg", null);
-//        ImageUtil.displayRoundImage(socialImage2, "http://pengaja.com/uiapptemplate/newphotos/profileimages/2.jpg", null);
-//        ImageUtil.displayRoundImage(socialImage3, "http://pengaja.com/uiapptemplate/newphotos/profileimages/3.jpg", null);
-
-        // TODO: setting to full screen makes checkboxes not work correctly for some reason..
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        isKeyboardOpen = false;
-        originalContacts = NewEventActivity.allContacts;
-
-        search = (EditText) findViewById(R.id.search);
-
+        // search bar handlers
         search.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -154,46 +134,37 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 return false;
             }
         });
-
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 contactsAdapter.getFilter().filter(s.toString());
             }
-
             @Override
             public void afterTextChanged(Editable s) {
             }
         });
 
-        getAllContacts(this.getContentResolver());
-        lv  = (IndexableListView) findViewById(R.id.lv);
-        contactsAdapter = new ContactsAdapter(getApplicationContext(), NewEventActivity.allContacts);
-        lv.setClickable(true);
-        lv.setAdapter(contactsAdapter);
-        lv.setOnItemClickListener(this);
-        lv.setItemsCanFocus(false);
-        lv.setTextFilterEnabled(true);
-
-        // adding
-        select = (TextView) findViewById(R.id.confirm_button);
-        select.setOnClickListener(new View.OnClickListener() {
+        // confirm new event
+        confirmButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Boolean noneSelected = true;
+                StringBuilder sb = new StringBuilder();
                 // check all contacts if any are selected
-                for(int i = 0; i < NewEventActivity.allContacts.size(); i++){
-                    if(NewEventActivity.allContacts.get(i).getIsChecked() == true){
+                for (int i = 0; i < NewEventActivity.allContacts.size(); i++) {
+                    if (NewEventActivity.allContacts.get(i).getIsChecked() == true) {
                         noneSelected = false;
+                        sb.append(NewEventActivity.allContacts.get(i).getName() + ", ");
                     }
                 }
                 // if at least one selected, return
-                if(!noneSelected){
+                if (!noneSelected) {
+                    Toast.makeText(NewEventActivity.this,
+                            sb.toString(), Toast.LENGTH_SHORT).show();
                     Intent data = new Intent();
                     if (getParent() == null) {
                         setResult(Activity.RESULT_OK, data);
@@ -205,15 +176,24 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                     // else notify user to select contacts
                     Toast.makeText(NewEventActivity.this, "Select at least one contact", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
 
+    private void setUpContactsList() {
+        contactsListView.setClickable(true);
+        contactsListView.setAdapter(contactsAdapter);
+        contactsListView.setOnItemClickListener(this);
+        contactsListView.setItemsCanFocus(false);
+        contactsListView.setTextFilterEnabled(true);
+    }
+
+    // for card animation logic
     @Override
     public void onBackPressed() {
         switch(currentCard){
             case(1):
+                NewEventActivity.allContacts = originalContacts;
                 super.onBackPressed();
                 break;
             case(2):
@@ -237,9 +217,8 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 cardViewMover3 = ObjectAnimator.ofFloat(cardView3, "translationX", 0, cardView1.getWidth());
                 cardViewMover3.setDuration(150);
                 cardViewMover3.start();
+                hideConfirmCard();
 
-                confirmCardViewMover = ObjectAnimator.ofFloat(confirmCardView, "translationY", 0,
-                        confirmCardView.getHeight());
                 currentCard--;
                 break;
             default:
@@ -247,6 +226,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    // for card animation logic
     public void onNextPressed() {
         switch(currentCard) {
             case(1):
@@ -269,6 +249,9 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 cardViewMover3.setDuration(150);
                 cardViewMover3.start();
                 cardView3.setVisibility(View.VISIBLE);
+
+                showConfirmCard();
+
                 currentCard++;
                 break;
             case(3):
@@ -278,41 +261,54 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        // TODO Auto-generated method stub
-//        switch (v.getId()) {
-//            case R.id.fragment_check_boxes_social_check1:
-//                // click on explore button
-//                if (socialCheck1.getText() == getString(R.string.material_icon_check_empty)) {
-//                    socialCheck1
-//                            .setText(getString(R.string.material_icon_check_full));
-//                } else {
-//                    socialCheck1
-//                            .setText(getString(R.string.material_icon_check_empty));
-//                }
-//                break;
-//            case R.id.fragment_check_boxes_social_check2:
-//                // click on explore button
-//                if (socialCheck2.getText() == getString(R.string.material_icon_check_empty)) {
-//                    socialCheck2
-//                            .setText(getString(R.string.material_icon_check_full));
-//                } else {
-//                    socialCheck2
-//                            .setText(getString(R.string.material_icon_check_empty));
-//                }
-//                break;
-//            case R.id.fragment_check_boxes_social_check3:
-//                // click on explore button
-//                if (socialCheck3.getText() == getString(R.string.material_icon_check_empty)) {
-//                    socialCheck3
-//                            .setText(getString(R.string.material_icon_check_full));
-//                } else {
-//                    socialCheck3
-//                            .setText(getString(R.string.material_icon_check_empty));
-//                }
-//                break;
-//        }
+    // this displays the google card at the bottom of the new event page
+    // and only displays when restrictions are met
+    private void showConfirmCard() {
+        if(numSelectedContacts > 0 && confirmCardView.getVisibility() == View.GONE) {
+            confirmCardViewMover = ObjectAnimator.ofFloat(confirmCardView, View.ALPHA, 0,1);
+            confirmCardViewMover.setDuration(200);
+            confirmCardViewMover.start();
+            confirmCardView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    // this function hides the google card at the bottom of the new event page
+    private void hideConfirmCard() {
+        if(numSelectedContacts <= 0 && confirmCardView.getVisibility() == View.VISIBLE) {
+            confirmCardViewMover = ObjectAnimator.ofFloat(confirmCardView, View.ALPHA, 1, 0);
+            confirmCardViewMover.setDuration(200);
+            confirmCardViewMover.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    confirmCardView.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+                }
+            });
+            confirmCardViewMover.start();
+        }
+    }
+
+    // count the total number of selected contacts
+    private int getNumSelectedContacts() {
+        int numSelectedContacts = 0;
+        for(Contact contact : NewEventActivity.allContacts) {
+            if(contact.getIsChecked()) {
+                numSelectedContacts++;
+            }
+        }
+        this.numSelectedContacts = numSelectedContacts;
+        return numSelectedContacts;
     }
 
     @Override
@@ -333,113 +329,147 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        // if sliding panel is open, close it
-//        InputMethodManager imm = (InputMethodManager) this
-//                .getSystemService(Context.INPUT_METHOD_SERVICE);
-//
-//        if (imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0) == true) {
-//            super.onBackPressed();
-//        } else if (imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0) == false && !search.getText().toString().matches("")) {
-//            search.setText(null);
-//        } else {
-//            NewEventActivity.allContacts = originalContacts;
-//            super.onBackPressed();
-//        }
-//        isKeyboardOpen = false;
-//        return;
-//    }
-
     @Override
     public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
-        filteredContacts.get(position).toggle();
+        // toggle the actual contact isChecked (so it can be used later)
+        Contact contact = filteredContacts.get(position);
+        contact.toggle();
+
+        // toggle the UI checkbox
+        TextView checkbox = (TextView) view.findViewById(R.id.contact_is_checked);
+        Log.d("checkbox", getChecked(checkbox) + ":" + numSelectedContacts);
+        if(getChecked(checkbox)) {
+            setChecked(checkbox, false);
+            numSelectedContacts--;
+            hideConfirmCard();
+        } else {
+            setChecked(checkbox, true);
+            numSelectedContacts++;
+            showConfirmCard();
+        }
+    }
+    // set UI checkbox state
+    private void setChecked(TextView checkBox, boolean checked) {
+        if(checked) {
+            checkBox.setText(getString(R.string.material_icon_check_full));
+        } else {
+            checkBox.setText(getString(R.string.material_icon_check_empty));
+        }
     }
 
+    // get UI checkbox state
+    private boolean getChecked(TextView checkBox) {
+        if(checkBox.getText() == getString(R.string.material_icon_check_full)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // this function gets all contacts from user's phonebook and sorts them from mobile, home, etc.
     public void getAllContacts(ContentResolver cr) {
-
         String prevName = "";
-
         if(NewEventActivity.allContacts.isEmpty()){
-            Cursor phones = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
+            Cursor phones = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
             // initialize Contact object for each contact in phonebook
             while (phones.moveToNext()) {
-                String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                String name = phones.getString(phones.getColumnIndex(
+                        ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                String phoneNumber = phones.getString(phones.getColumnIndex(
+                        ContactsContract.CommonDataKinds.Phone.NUMBER));
                 if(name.equalsIgnoreCase(prevName)){
                     NewEventActivity.allContacts.add(new Contact(name + " (" +
-                            getType(phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE))) + ")",
+                            getType(phones.getInt(phones.getColumnIndex(
+                                    ContactsContract.CommonDataKinds.Phone.TYPE))) + ")",
                             phoneNumber, false));
                 } else {
                     NewEventActivity.allContacts.add(new Contact(name,
                             phoneNumber, false));
                 }
                 prevName = name;
-
             }
-
             phones.close();
-
-        } else {
-            // contacts list already created
         }
-
     }
 
-    class ContactsAdapter extends BaseAdapter implements CompoundButton.OnCheckedChangeListener, SectionIndexer, Filterable {
-        TextView cb;
-        private String mSections = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Canvas canvas;
+    // util function for getAllContacts that identifies duplicates and specifies the number type
+    // if a duplicate exists
+    public String getType(int value){
+        switch(value){
+            case(ContactsContract.CommonDataKinds.Phone.TYPE_HOME):
+                return "home";
+            case(ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE):
+                return "cell";
+            case(ContactsContract.CommonDataKinds.Phone.TYPE_WORK):
+                return "work";
+            case(ContactsContract.CommonDataKinds.Phone.TYPE_FAX_WORK):
+                return "work fax";
+            case(ContactsContract.CommonDataKinds.Phone.TYPE_FAX_HOME):
+                return "home fax";
+            case(ContactsContract.CommonDataKinds.Phone.TYPE_PAGER):
+                return "pager";
+            case(ContactsContract.CommonDataKinds.Phone.TYPE_OTHER):
+                return "other";
+            case(ContactsContract.CommonDataKinds.Phone.TYPE_CALLBACK):
+                return "callback";
+            case(ContactsContract.CommonDataKinds.Phone.TYPE_COMPANY_MAIN):
+                return "company main";
+            default:
+                return "";
+        }
+    }
 
+    // contacts adapter, implements filtering and alphabetized indexing
+    class ContactsAdapter extends BaseAdapter implements SectionIndexer, Filterable {
+        TextView checkBox;
+        private String mSections = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private LayoutInflater mInflater;
         private ItemFilter mFilter = new ItemFilter();
-
-        View vi;
+        View rootView;
 
         ContactsAdapter(Context context, List<Contact> contacts) {
-
             // set originalContacts and filteredContacts as original Contacts list
             NewEventActivity.allContacts = contacts;
             filteredContacts = contacts;
-
             mInflater = LayoutInflater.from(context);
-            mInflater = (LayoutInflater) NewEventActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            mInflater = (LayoutInflater) NewEventActivity.this.getSystemService(
+                    Context.LAYOUT_INFLATER_SERVICE);
         }
-
+        public class ViewHolder {
+            TextView name;
+            TextView checked;
+        }
         @Override
         public int getCount() {
             return filteredContacts.size();
         }
-
         @Override
         public Object getItem(int position) {
             // return the name of the contact at that position (for listview)
             return filteredContacts.get(position).getName();
         }
-
         @Override
         public long getItemId(int position) {
             return position;
         }
-
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            vi = convertView;
-            if (convertView == null) vi = mInflater.inflate(R.layout.all_contacts_row, null);
+            rootView = convertView;
+            if (convertView == null) rootView = mInflater.inflate(R.layout.all_contacts_row, null);
 
-            TextView tv = (TextView) vi.findViewById(R.id.contact_name);
-            cb = (trooperdesigns.lastminuteapp.font.MaterialDesignIconsTextView) vi.findViewById(R.id.contact_is_checked);
+            TextView tv = (TextView) rootView.findViewById(R.id.contact_name);
+            checkBox = (TextView) rootView.findViewById(R.id.contact_is_checked);
             tv.setText("Name: " + filteredContacts.get(position).getName());
 
             // TODO: Uncomment next line when using phone number as username to query
             //tv1.setText("Phone No:" + phone.get(position));
-            cb.setTag(position);
-            //cb.setChecked(filteredContacts.get(position).getIsChecked());
-            //cb.setOnCheckedChangeListener(this);
+            checkBox.setTag(position);
+            // check checkboxes that were previously already checked
+            setChecked(checkBox, filteredContacts.get(position).getIsChecked());
 
             // A ViewHolder keeps references to children views to avoid unnecessary calls
             // to findViewById() on each row.
@@ -456,7 +486,6 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 holder = new ViewHolder();
                 holder.name = (TextView) convertView.findViewById(R.id.contact_name);
                 holder.checked = (TextView) convertView.findViewById(R.id.contact_is_checked);
-                //holder.phone = (TextView) convertView.findViewById(R.id.textView2);
 
                 // Bind the data efficiently with the holder.
                 convertView.setTag(holder);
@@ -468,24 +497,20 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
 
             // If weren't re-ordering this you could rely on what you set last time
             holder.name.setText(filteredContacts.get(position).getName());
-            //holder.checked.setChecked(filteredContacts.get(position).getIsChecked());
+            setChecked(holder.checked, filteredContacts.get(position).getIsChecked());
 
             return convertView;
         }
 
-        public class ViewHolder {
-            TextView name;
-            TextView checked;
+        private void setChecked(TextView checkBox, boolean checked) {
+            if(checked) {
+                checkBox.setText(getString(R.string.material_icon_check_full));
+            } else {
+                checkBox.setText(getString(R.string.material_icon_check_empty));
+            }
         }
 
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView,
-                                     boolean isChecked) {
-            Contact c = filteredContacts.get((Integer) buttonView.getTag());
-            c.setIsChecked(isChecked);
-
-        }
-
+        // for alphabetized sectioning
         @Override
         public int getPositionForSection(int section) {
             // If there is no item for current section, previous section will be selected
@@ -505,12 +530,10 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
             }
             return 0;
         }
-
         @Override
         public int getSectionForPosition(int position) {
             return 0;
         }
-
         @Override
         public Object[] getSections() {
             String[] sections = new String[mSections.length()];
@@ -518,12 +541,10 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 sections[i] = String.valueOf(mSections.charAt(i));
             return sections;
         }
-
         @Override
         public Filter getFilter() {
             return mFilter;
         }
-
         private class ItemFilter extends Filter {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
@@ -547,13 +568,10 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                         newList.add(origList.get(i));
                     }
                 }
-
                 results.values = newList;
                 results.count = newList.size();
-
                 return results;
             }
-
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
@@ -561,36 +579,6 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
                 filteredContacts = (ArrayList<Contact>) results.values;
                 notifyDataSetChanged();
             }
-
-        }
-
-        public View getView(){
-            return vi;
-        }
-    }
-
-    public String getType(int value){
-        switch(value){
-            case(ContactsContract.CommonDataKinds.Phone.TYPE_HOME):
-                return "home";
-            case(ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE):
-                return "cell";
-            case(ContactsContract.CommonDataKinds.Phone.TYPE_WORK):
-                return "work";
-            case(ContactsContract.CommonDataKinds.Phone.TYPE_FAX_WORK):
-                return "work fax";
-            case(ContactsContract.CommonDataKinds.Phone.TYPE_FAX_HOME):
-                return "home fax";
-            case(ContactsContract.CommonDataKinds.Phone.TYPE_PAGER):
-                return "pager";
-            case(ContactsContract.CommonDataKinds.Phone.TYPE_OTHER):
-                return "other";
-            case(ContactsContract.CommonDataKinds.Phone.TYPE_CALLBACK):
-                return "callback";
-            case(ContactsContract.CommonDataKinds.Phone.TYPE_COMPANY_MAIN):
-                return "company main";
-            default:
-                return "";
         }
     }
 }

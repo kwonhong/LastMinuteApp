@@ -75,7 +75,7 @@
             android:layout_margin="8dp"
             android:background="@drawable/transparent_button_selector"
             android:padding="8dp"
-            android:text="BACK"
+            android:text="@string/back"
             android:textColor="@color/main_color_500"
             android:textSize="14sp"
             app:typeface="robotoMedium" />
@@ -86,7 +86,7 @@
             android:layout_margin="8dp"
             android:background="@drawable/transparent_button_selector"
             android:padding="8dp"
-            android:text="NEXT"
+            android:text="@string/next"
             android:textColor="@color/main_color_500"
             android:textSize="14sp"
             app:typeface="robotoMedium" />

@@ -28,11 +28,9 @@
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:paddingBottom="5dp"
-        android:hint="Search"
+        android:layout_margin="8dp"
+        android:paddingBottom="8dp"
+        android:hint="@string/search"
         android:textColorHint="#bbbbbb"
         android:nextFocusUp="@id/search"
         android:nextFocusLeft="@id/search" />
@@ -40,6 +38,9 @@
     <trooperdesigns.lastminuteapp.widget.IndexableListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:fastScrollEnabled="true"
         android:fastScrollAlwaysVisible="true"
         android:id="@+id/lv"/>

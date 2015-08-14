@@ -227,8 +227,8 @@ public class ViewContactsActivity extends Activity implements AdapterView.OnItem
             // TODO: Uncomment next line when using phone number as username to query
             //tv1.setText("Phone No:" + phone.get(position));
             cb.setTag(position);
-            //cb.setChecked(filteredContacts.get(position).getIsChecked());
-            //cb.setOnCheckedChangeListener(this);
+            //checkBox.setChecked(filteredContacts.get(position).getIsChecked());
+            //checkBox.setOnCheckedChangeListener(this);
 
             // A ViewHolder keeps references to children views to avoid unnecessary calls
             // to findViewById() on each row.

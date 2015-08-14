@@ -5,34 +5,31 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/fragment_check_boxes_social_image1"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="8dp"
-            android:layout_weight="0" />
+    <trooperdesigns.lastminuteapp.font.RobotoTextView
+        android:id="@+id/contact_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:text="Name Surname"
+        android:textColor="@color/main_color_grey_600"
+        android:textSize="16dp"
+        app:typeface="robotoRegular" />
 
-        <trooperdesigns.lastminuteapp.font.RobotoTextView
-            android:id="@+id/contact_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:text="Name Surname"
-            android:textColor="@color/main_color_grey_600"
-            android:textSize="16dp"
-            app:typeface="robotoRegular" />
+    <trooperdesigns.lastminuteapp.font.MaterialDesignIconsTextView
+        android:id="@+id/contact_is_checked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:clickable="false"
+        android:longClickable="false"
+        android:layout_margin="8dp"
+        android:layout_weight="0"
+        android:padding="8dp"
+        android:text="@string/material_icon_check_empty"
+        android:textColor="@color/material_yellow_500"
+        android:textSize="30sp" />
 
-        <trooperdesigns.lastminuteapp.font.MaterialDesignIconsTextView
-            android:id="@+id/contact_is_checked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="0"
-            android:padding="8dp"
-            android:text="@string/material_icon_check_empty"
-            android:textColor="@color/material_yellow_500"
-            android:textSize="30sp" />
-    </LinearLayout>
+</LinearLayout>
