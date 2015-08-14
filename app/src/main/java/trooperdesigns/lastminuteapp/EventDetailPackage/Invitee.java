@@ -10,6 +10,7 @@ import trooperdesigns.lastminuteapp.EventListPackage.Invitation;
 
 @Data @AllArgsConstructor
 public class Invitee {
+
     private Invitation.Status status;
     private String name;
 
