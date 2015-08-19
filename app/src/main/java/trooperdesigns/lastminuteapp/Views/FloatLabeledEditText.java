@@ -367,6 +367,13 @@ public class FloatLabeledEditText extends LinearLayout {
     }
 
     /**
+     * @see EditText#setInputType
+     */
+    public void setInputType(int inputType) {
+        editText.setInputType(inputType);
+    }
+
+    /**
      * @see TextView#setBackground(Drawable)
      */
     @SuppressWarnings("deprecation")

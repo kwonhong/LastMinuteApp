@@ -42,26 +42,20 @@
         android:layout_marginTop="6dp"
         android:gravity="center_vertical" >
 
-        <trooperdesigns.lastminuteapp.font.FontelloTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/fontello_password"
-            android:textColor="@color/main_color_grey_600"
-            android:textSize="16dp"
-            tools:ignore="SpUsage" />
-
-        <trooperdesigns.lastminuteapp.Views.FloatLabeledEditText
+        <EditText
+            android:id="@+id/event_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:inputType="textCapSentences|textMultiLine"
+            android:lines="5"
+            android:minLines="5"
+            android:maxLines="5"
+            android:gravity="top"
+            android:singleLine="false"
+            android:hint="Description"
             android:layout_weight="1"
-            app:fletFloatingHint="@string/event_details"
-            app:fletHintTextColor="@color/main_color_500"
-            app:fletPassword="true"
-            app:fletSingleLine="true"
-            app:fletTextBackground="@drawable/edit_text_background_accent"
-            app:fletTextColor="@color/main_color_grey_400" />
+            />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

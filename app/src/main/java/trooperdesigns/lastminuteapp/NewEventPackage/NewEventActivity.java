@@ -7,12 +7,12 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +26,6 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +35,7 @@ import java.util.List;
 
 import trooperdesigns.lastminuteapp.R;
 import trooperdesigns.lastminuteapp.UtilPackage.StringMatcher;
+import trooperdesigns.lastminuteapp.Views.FloatLabeledEditText;
 import trooperdesigns.lastminuteapp.widget.IndexableListView;
 
 public class NewEventActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -44,6 +44,7 @@ public class NewEventActivity extends AppCompatActivity implements AdapterView.O
     private ObjectAnimator cardViewMover1, cardViewMover2, cardViewMover3, confirmCardViewMover;
     private TextView nextButton, nextButton2, backButton, backButton2, backButton3;
     private int currentCard;
+    private EditText eventDetailsEditText;
 
     // TODO: empty allContacts list when event is created
     static List<Contact> allContacts = new ArrayList<>();
@@ -93,6 +94,9 @@ public class NewEventActivity extends AppCompatActivity implements AdapterView.O
 
         // dynamic search bar variable
         search = (EditText) findViewById(R.id.search);
+
+        // set details editText to be multi-line
+        eventDetailsEditText = (EditText) findViewById(R.id.event_details);
 
         // contact list variables
         contactsListView = (IndexableListView) findViewById(R.id.lv);
