@@ -3,6 +3,7 @@ package trooperdesigns.lastminuteapp.NewEventPackage;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -42,9 +43,8 @@ public class NewEventActivity extends AppCompatActivity implements AdapterView.O
 
     private CardView cardView1, cardView2, cardView3, confirmCardView;
     private ObjectAnimator cardViewMover1, cardViewMover2, cardViewMover3, confirmCardViewMover;
-    private TextView nextButton, nextButton2, backButton, backButton2, backButton3;
+    private TextView nextButton, nextButton2, backButton, backButton2, backButton3, timeDialogButton;
     private int currentCard;
-    private EditText eventDetailsEditText;
 
     // TODO: empty allContacts list when event is created
     static List<Contact> allContacts = new ArrayList<>();
@@ -95,8 +95,8 @@ public class NewEventActivity extends AppCompatActivity implements AdapterView.O
         // dynamic search bar variable
         search = (EditText) findViewById(R.id.search);
 
-        // set details editText to be multi-line
-        eventDetailsEditText = (EditText) findViewById(R.id.event_details);
+        // time picker dialog
+        timeDialogButton = (TextView) findViewById(R.id.time_dialog_button);
 
         // contact list variables
         contactsListView = (IndexableListView) findViewById(R.id.lv);
@@ -129,6 +129,15 @@ public class NewEventActivity extends AppCompatActivity implements AdapterView.O
         nextButton2.setOnClickListener(nextClickHandler);
         backButton2.setOnClickListener(backClickHandler);
         backButton3.setOnClickListener(backClickHandler);
+
+        // time dialog button handler
+        timeDialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment timePickerFragment = new TimePickerFragment();
+                timePickerFragment.show(getFragmentManager(), "timePicker");
+            }
+        });
 
         // search bar handlers
         search.setOnTouchListener(new View.OnTouchListener() {

@@ -178,6 +178,7 @@
     <string name="confirm">CONFIRM</string>
     <string name="back">BACK</string>
     <string name="next">NEXT</string>
+    <string name="select_time">Select Time</string>
 
     <!-- For Update -->
     <string name="confirm_exit">Press Back button again to exit</string>
