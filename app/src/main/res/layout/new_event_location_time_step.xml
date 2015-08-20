@@ -45,7 +45,6 @@
         <trooperdesigns.lastminuteapp.font.FontelloTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:text="@string/fontello_heart_empty"
             android:textColor="@color/main_color_grey_600"
             android:textSize="16dp"
@@ -63,6 +62,17 @@
             android:textSize="14sp"
             app:typeface="robotoMedium" />
     </LinearLayout>
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:track="@drawable/switch_track_style"
+        android:thumb="@drawable/switch_thumb_style"
+        android:thumbTextPadding="30dp"
+        android:switchMinWidth="50dp"
+        android:showText="true"
+        android:gravity="center_horizontal"
+        android:textOff="@string/switch_today"
+        android:textOn="@string/switch_tomorrow"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
