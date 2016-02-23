@@ -6,17 +6,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import trooperdesigns.lastminuteapp.NewEventPackage.WizardUniversalFragment;
 import trooperdesigns.lastminuteapp.R;
 
-public class WizardUniversalActivity extends ActionBarActivity {
+public class WizardUniversalActivity extends AppCompatActivity {
 
 	private MyPagerAdapter adapter;
 	private ViewPager pager;
@@ -45,7 +44,7 @@ public class WizardUniversalActivity extends ActionBarActivity {
 
 		setNavigator();
 
-		pager.setOnPageChangeListener(new OnPageChangeListener() {
+		pager.addOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
 			public void onPageSelected(int position) {
