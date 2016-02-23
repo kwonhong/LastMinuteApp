@@ -98,6 +98,8 @@
     <string name="material_icon_flag">&#xe96a;</string>
     <string name="material_icon_favorite">&#xe9b6;</string>
     <string name="material_icon_go">&#xea04;</string>
+    <string name="material_icon_go_left">&#xe875;</string>
+    <string name="material_icon_go_right">&#xe876;</string>
     <string name="material_icon_home_variant">&#xe9bd;</string>
     <string name="material_icon_home">&#xe9be;</string>
     <string name="material_icon_hotels">&#xeae3;</string>
@@ -106,6 +108,8 @@
     <string name="material_icon_human">&#xe9c5;</string>
     <string name="material_icon_headline">&#xeb40;</string>
     <string name="material_icon_image_box">&#xe952;</string>
+    <string name="material_icon_info">&#xe9d4;</string>
+    <string name="material_icon_info_box">&#xe896;</string>
     <string name="material_icon_like">&#xeb03;</string>
     <string name="material_icon_line_spacing">&#xe988;</string>
     <string name="material_icon_note">&#xea23;</string>
@@ -119,7 +123,10 @@
     <string name="material_icon_password">&#xe9fa;</string>
     <string name="material_icon_plus_box">&#xea7f;</string>
     <string name="material_icon_party">&#xe937;</string>
+    <string name="material_icon_point_empty">&#xe868;</string>
+    <string name="material_icon_point_full">&#xe869;</string>
     <string name="material_icon_star_outline">&#xeade;</string>
+    <string name="material_icon_star_half">&#xeadd;</string>
     <string name="material_icon_star">&#xeadf;</string>
     <string name="material_icon_share">&#xeac0;</string>
     <string name="material_icon_skip_next">&#xeaca;</string>
@@ -134,6 +141,10 @@
     <string name="material_icon_video">&#xeb39;</string>
     <string name="material_icon_undo">&#xeb2c;</string>
     <string name="material_icon_unfold_more">&#xeb2f;</string>
+    <string name="material_icon_w_shop">&#xeb4f;</string>
+    <string name="material_icon_cloud_univ_first">&#xeb54;</string>
+    <string name="material_icon_cloud_univ_second">&#xeb5a;</string>
+    <string name="material_icon_cloud_univ_third">&#xeb55;</string>
 
     <!-- Content description strings -->
     <string name="cd_background_image">background image</string>

@@ -24,6 +24,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import trooperdesigns.lastminuteapp.EventListPackage.EventsFragment;
 import trooperdesigns.lastminuteapp.NewEventPackage.NewEventActivity;
 import trooperdesigns.lastminuteapp.NewEventPackage.ViewContactsActivity;
+import trooperdesigns.lastminuteapp.NewEventPackage.WizardUniversalActivity;
 import trooperdesigns.lastminuteapp.R;
 import trooperdesigns.lastminuteapp.UtilPackage.ImageUtil;
 import trooperdesigns.lastminuteapp.UtilPackage.ParseHandler;
@@ -68,7 +69,8 @@ public class DrawerActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NewEventActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), NewEventActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WizardUniversalActivity.class);
                 startActivity(intent);
             }
         });

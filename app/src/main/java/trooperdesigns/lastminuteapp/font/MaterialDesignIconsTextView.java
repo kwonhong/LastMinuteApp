@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 public class MaterialDesignIconsTextView extends TextView {
-	
+
 	private static Typeface sMaterialDesignIcons;
 
 	public MaterialDesignIconsTextView(Context context) {
@@ -22,7 +22,7 @@ public class MaterialDesignIconsTextView extends TextView {
 		if (isInEditMode()) return;//Won't work in Eclipse graphical layout
 		setTypeface();
 	}
-	
+
 	private void setTypeface() {
 		if (sMaterialDesignIcons == null) {
 			sMaterialDesignIcons = Typeface.createFromAsset(getContext().getAssets(), "fonts/MaterialDesignIcons.ttf");
