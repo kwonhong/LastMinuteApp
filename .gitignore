@@ -1,5 +1,7 @@
 # Built application files
 /*/build/
+build/*
+!build/build.xml
 
 # Crashlytics configuations
 com_crashlytics_export_strings.xml
@@ -14,6 +16,7 @@ local.properties
 .signing/
 
 # User-specific configurations
+.idea/
 .idea/libraries/
 .idea/workspace.xml
 .idea/tasks.xml
@@ -34,3 +37,7 @@ local.properties
 .Trashes
 ehthumbs.db
 Thumbs.db
+app.iml
+local.properties
+*.iml
+
